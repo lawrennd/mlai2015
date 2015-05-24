@@ -17,15 +17,15 @@ you've seen so far.
 ### MASH Resources on Probability and Linear Algebra
 
 -   [basic
-    probability](http:/www.sheffield.ac.uk/mash/statistics2/basicprob),
+    probability](http://www.sheffield.ac.uk/mash/statistics2/basicprob),
     including a fair bit on Bayes' Rule
 -   [Continuous
-    distributions](http:/www.sheffield.ac.uk/mash/statistics2/contprob)
--   [Eigenvalues](http:/www.sheffield.ac.uk/mash/mathematics/eigenvalues),
+    distributions](http://www.sheffield.ac.uk/mash/statistics2/contprob)
+-   [Eigenvalues](http://www.sheffield.ac.uk/mash/mathematics/eigenvalues),
     some basic linear algebra
 
 ### Other Matrix Help
 
 Matrix arithmetic from
-[mathcentre.ac.uk](http:/www.mathcentre.ac.uk/students/topics/matrices/matrix-arithmetic/)
+[mathcentre.ac.uk](http://www.mathcentre.ac.uk/students/topics/matrices/matrix-arithmetic/)
 
