@@ -17,7 +17,7 @@ Lab Class
 Introduction to the Jupyter Notebook and Pandas
 
 The notebook for the lab class can be downloaded from
-[here](http://nbviewer.ipython.org/github/SheffieldML/notebook/blob/master/lab_classes/machine_learning/2014/week1.ipynb).
+[here](http://nbviewer.ipython.org/github//week1.ipynb).
 
 To obtain the lab class in ipython notebook, first open the ipython
 notebook. Then paste the following code into the ipython notebook
