@@ -7,7 +7,7 @@ Bayesian Review and Gaussian Processes
 ======================================
 
 Gaussian Processes [Lecture
-Slides](http://staffwww.dcs.sheffield.ac.uk/people/N.Lawrence/mlai2014/w12_gaussianProcesses.pdf).
+Slides](./assets/w12_gaussianProcesses.pdf).
 
 ### YouTube Videos
 

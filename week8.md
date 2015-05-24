@@ -9,7 +9,7 @@ Dimensionality Reduction
 Lecture Notes
 -------------
 
-Bayesian Inference [Lecture Slides](http://staffwww.dcs.sheffield.ac.uk/people/N.Lawrence/mlai2014/w8_dimensionalityReduction.pdf)
+Bayesian Inference [Lecture Slides](./assets/w8_dimensionalityReduction.pdf)
 
 Lab Class
 ---------

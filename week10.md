@@ -6,7 +6,7 @@ title: Week 10
 Bayesian Review and Gaussian Processes
 ======================================
 
-Gaussian Processes [Lecture Slides](http://staffwww.dcs.sheffield.ac.uk/people/N.Lawrence/mlai2014/w10_gaussianProcesses.pdf).
+Gaussian Processes [Lecture Slides](./assets/w10_gaussianProcesses.pdf).
 
 ### YouTube Videos
 

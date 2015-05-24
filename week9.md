@@ -9,7 +9,7 @@ Classification
 Lecture Notes
 -------------
 
-#### [Lecture slides](http://staffwww.dcs.sheffield.ac.uk/people/N.Lawrence/mlai2014/w9_classification.pdf)
+#### [Lecture slides](./assets/w9_classification.pdf)
 
 #### Lab Class
 
