@@ -14,10 +14,10 @@ Lecture Notes
 #### Lab Class
 
 The notebook for the lab class can be downloaded from
-[here](http://nbviewer.ipython.org/github/SheffieldML/notebook/blob/master/lab_classes/machine_learning/week6.ipynb).
+[here](http:/nbviewer.ipython.org/github/lawrennd/mlai2014/blob/master/week6.ipynb).
 
     import urllib
-    urllib.urlretrieve('https://raw.githubusercontent.com/SheffieldML/notebook/master/lab_classes/machine_learning/week6.ipynb', 'week6.ipynb')
+    urllib.urlretrieve('https:/raw.githubusercontent.com/lawrennd/mlai2014/master/week6.ipynb', 'week6.ipynb')
 
 You should now be able to find the lab class by clicking `File->Open` on
 the ipython notebook menu.
