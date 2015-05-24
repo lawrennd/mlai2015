@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "COM4509/COM6509 Machine Learning and Adaptive Intelligence 2014-15"
+title: "Overview"
 ---
 
 COM4509/COM6509 Machine Learning and Adaptive Intelligence 2014-15
