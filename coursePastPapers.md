@@ -1,6 +1,6 @@
 ---
 layout: page
-title: MLAI Exam 2014
+title: Exam
 ---
 
 Exam 2014
