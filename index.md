@@ -3,16 +3,9 @@ layout: page
 title: "Overview"
 ---
 
-COM4509/COM6509 Machine Learning and Adaptive Intelligence 2014-15
+COM4509/COM6509 Machine Learning and Adaptive Intelligence 2015-16
 ==================================================================
 
-### Exam 2014/15
-
-You can find [solutions to this year's paper here](./assets/com6509s_v3.pdf).
-
-### Exam
-
-Information on the Exam is [now available](./coursePastPapers.html).
 
 ### Course Overview
 
@@ -36,8 +29,8 @@ Prerequisites
 
 For this course we assume that you have seen linear algebra before as well as probability and calculus. The course is in Python, but we will not be 'teaching' the language. The assumption is that you have enough prior experience of programming to pick up the language as you go. If you are unfamiliar with these concepts you might want to refresh yourself with [this lab class](http://nbviewer.ipython.org/github/lawrennd/mlai2014/blob/master/lab_classes/machines_and_intelligence/MI_Lab_class.ipynb) on basic machine learning in python with the notebook.
 
-Recommended text book
----------------------
+Recommended text books
+----------------------
 
 The main course recommended text is [Rogers and Girolami's "A First Course in Machine Learning"](http://www.dcs.gla.ac.uk/~srogers/firstcourseml/). Also useful is [Bishop, Pattern Recognition and Machine Learning](http://research.microsoft.com/en-us/um/people/cmbishop/prml/). Most lectures will provide references to these text, and it will help a lot if you read the relevant sections in your own time.
 
@@ -48,10 +41,10 @@ Pre-requisites
 
 You are expected to have familiarity with basic probability and linear algebra. We will use Python and the ipython notebook on the course, so you are expected to be comfortable with adapting to a new programming environment without specific tuition.
 
-Lecture Slides: Schedule
-------------------------
+Lecture Slides: Draft Schedule
+------------------------------
 
-The material for the lectures will be posted below before each lecture (including audio and screen capture, where possible). We aim to put up the materials for each week's lectures at the beginning of week.
+The material for the lectures will be updated before each lecture (including audio and screen capture, where possible). As a place holder last year's information is currently stored.
 
 - [Week 1: Uncertainty and Probability](./assets/w1_uncertaintyAndProbability.pdf)
   Introduction to Pandas, Jupyter and Probability
@@ -86,4 +79,9 @@ The material for the lectures will be posted below before each lecture (includin
 
 - [Week 12: Gaussian Processes](./assets/w12_gaussianProcesses.pdf)
   Gaussian Process Lab
+
+Past Papers
+-----------
+
+Information on past papers is [available](./coursePastPapers.html).
 

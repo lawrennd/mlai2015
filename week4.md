@@ -12,23 +12,20 @@ For this week the lecture slides are available
 ### YouTube Videos
 
 There is a YouTube video available of me giving this material at the
-Gaussian Process Road Show in Uganda. The first 25 minutes leads covers
-model selection, and then it leads into the video second below which
+[Gaussian Process Road Show in Uganda](http://gpss.cc/gprs13/). The first 25 minutes of the relevant video covers model selection, and then it leads into the video second below which
 introduces Bayesian modelling.
-
-#### GPRS Uganda Video
 
 Lab Class
 ---------
 
 The notebook for the lab class can be downloaded from
-[here](http://nbviewer.ipython.org/github/lawrennd/mlai2014/blob/master/week4.ipynb).
+[here](http://nbviewer.ipython.org/github/lawrennd/mlai2015/blob/master/week4.ipynb).
 
 To obtain the lab class in ipython notebook, first open the ipython
 notebook. Then paste the following code into the ipython notebook
 
     import urllib
-    urllib.urlretrieve('https://raw.githubusercontent.com/lawrennd/mlai2014/master/week4.ipynb', 'week4.ipynb')
+    urllib.urlretrieve('https://raw.githubusercontent.com/lawrennd/mlai2015/master/week4.ipynb', 'week4.ipynb')
 
 You should now be able to find the lab class by clicking `File->Open` on
 the ipython notebook menu.

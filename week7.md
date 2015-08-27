@@ -13,13 +13,13 @@ Lab Class
 ---------
 
 The notebook for the lab class can be downloaded from
-[here](http://nbviewer.ipython.org/github/lawrennd/mlai2014/blob/master/week7.ipynb).
+[here](http://nbviewer.ipython.org/github/lawrennd/mlai2015/blob/master/week7.ipynb).
 
 To obtain the lab class in ipython notebook, first open the ipython
 notebook. Then paste the following code into the ipython notebook
 
     import urllib
-    urllib.urlretrieve('https://raw.githubusercontent.com/lawrennd/mlai2014/master/week7.ipynb', 'week7.ipynb')
+    urllib.urlretrieve('https://raw.githubusercontent.com/lawrennd/mlai2015/master/week7.ipynb', 'week7.ipynb')
 
 You should now be able to find the lab class by clicking `File->Open` on
 the ipython notebook menu.
