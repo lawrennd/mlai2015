@@ -11,18 +11,18 @@ COM4509/COM6509 Machine Learning and Adaptive Intelligence 2015-16
 
 This unit aims to provide an understanding of the fundamental technologies underlying modern artificial intelligence. In particular it will provide foundational understanding of probability and statistical modelling, supervised learning for classification and regression, and unsupervised learning for data exploration. The teaching consists of two hours of lectures and one of lab classes each week. The lectures are on Tuesdays, the labs on Fridays. The teaching schedule and venue for each week are given below:
 
-1.  [Tuesday 9-10 MAPP-LT12; Tuesday 11-13 MAPP-F110 Lab Class](./week1.html)
-2.  [Tuesday 9-10 MAPP-LT12; Tuesday 11-13 MAPP-F110 Lab Class](./week2.html)
-3.  [Tuesday 9-10 MAPP-LT12; Tuesday 11-13 MAPP-F110 Lab Class](./week3.html)
-4.  [Tuesday 9-10 MAPP-LT12; Tuesday 11-13 MAPP-F110 Lab Class](./week4.html)
+1.  [Tuesday 9-10 SB-LT2; Tuesday 11-13 MAPP-F110 Lab Class](./week1.html)
+2.  [Tuesday 9-10 SB-LT2; Tuesday 11-13 MAPP-F110 Lab Class](./week2.html)
+3.  [Tuesday 9-10 SB-LT2; Tuesday 11-13 MAPP-F110 Lab Class](./week3.html)
+4.  [Tuesday 9-10 SB-LT2; Tuesday 11-13 MAPP-F110 Lab Class](./week4.html)
 5.  [Reading Week](./week5.html)
-6.  [Tuesday 9-10 MAPP-LT12; Tuesday 11-13 MAPP-F110 Lab Class](./week6.html)
-7.  [Tuesday 9-10 MAPP-LT12; Tuesday 11-13 MAPP-F110 Lab Class](./week7.html)
-8.  [Tuesday 9-10 MAPP-LT12; Tuesday 11-13 MAPP-F110 Lab Class](./week8.html)
-9.  [Tuesday 9-10 MAPP-LT12; Tuesday 11-13 MAPP-F110 Lab Class](./week9.html)
-10. [Tuesday 9-10 MAPP-LT12; Tuesday 11-13 MAPP-F110 Lab Class](./week10.html)
+6.  [Tuesday 9-10 SB-LT2; Tuesday 11-13 MAPP-F110 Lab Class](./week6.html)
+7.  [Tuesday 9-10 SB-LT2; Tuesday 11-13 MAPP-F110 Lab Class](./week7.html)
+8.  [Tuesday 9-10 SB-LT2; Tuesday 11-13 MAPP-F110 Lab Class](./week8.html)
+9.  [Tuesday 9-10 SB-LT2; Tuesday 11-13 MAPP-F110 Lab Class](./week9.html)
+10. [Tuesday 9-10 SB-LT2; Tuesday 11-13 MAPP-F110 Lab Class](./week10.html)
 11. [Reading Week](./week11.html)
-12. [Tuesday 9-10 MAPP-LT12; Tuesday 11-13 MAPP-F110 Lab Class](./week12.html)
+12. [Tuesday 9-10 SB-LT2; Tuesday 11-13 MAPP-F110 Lab Class](./week12.html)
 
 Prerequisites
 -------------
