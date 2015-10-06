@@ -8,7 +8,5 @@ type: lecture
 labclass: week1.ipynb
 lecturepdf: w1_probability.pdf
 lecturenb: w1_probability.ipynb
+youtube: M67rG3cZoVg
 ---
-
-
-This is the content

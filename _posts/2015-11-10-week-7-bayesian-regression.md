@@ -2,31 +2,15 @@
 layout: post
 title: Week 7
 tagline: Bayesian regression
-time: "9:00"
 venue: "SB LT-2"
+labvenue: Mappin F110
+labtime: "11:00"
+date: 2015-11-10 09:00
+time: "9:00"
 type: lecture
+labclass: week7.ipynb
+lecturepdf: w7_bayesianRegression.pdf
 ---
-
-Bayesian Regression
-===================
-
-Bayesian Inference [Lecture
-Slides](./assets/w7_bayesianRegression.pdf)
-
-Lab Class
----------
-
-The notebook for the lab class can be downloaded from
-[here](http://nbviewer.ipython.org/github/lawrennd/mlai2015/blob/master/week7.ipynb).
-
-To obtain the lab class in ipython notebook, first open the ipython
-notebook. Then paste the following code into the ipython notebook
-
-    import urllib.request
-    urllib.request.urlretrieve('https://raw.githubusercontent.com/lawrennd/mlai2015/master/week7.ipynb', 'week7.ipynb')
-
-You should now be able to find the lab class by clicking `File->Open` on
-the ipython notebook menu.
 
 ### YouTube Videos
 
@@ -50,18 +34,4 @@ Second half overlaps with the material from this week's lectures.
     regression)
 -   Sections 3.7-3.8 of Rogers and Girolami (pg 122-133).
 -   Section 3.4 of Bishop (pg 161-165).
-
-### Previous Lectures
-
-Univariate Bayesian Inference
-
-\
-
-Multivariate Bayesian Inference
-
-\
-
-Bayesian Polynomials on Olympics Data
-
-\
 

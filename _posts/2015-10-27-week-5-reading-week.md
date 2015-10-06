@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: Week 5
 tagline: Reading Week
 ---

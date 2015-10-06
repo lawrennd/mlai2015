@@ -1,36 +1,14 @@
 ---
-layout: page
+layout: lecture
 title: Week 2
 tagline: "Objective functions, gradient descent and matrix factorization"
 venue: SB-LT2
+date: 2015-10-06 09:00
 time: "9:00"
-type: lecture
 labclass: week2.ipynb
 lecturepdf: w2_objective.pdf
 lecturenb: w2_objective.ipynb
 ---
-
-{% if page.youtube %}
-<iframe width="{{ site.youtube.width }}" height="{{ site.youtube.height }}" src="https://www.youtube.com/embed/{{ page.youtube }}" frameborder="0" allowfullscreen></iframe>
-{% endif %}
-
-
-**{{ page.tagline }}** \[{%if page.lecturepdf %}[PDF Lecture slides]({{ site.url }}{{ site.baseurl }}/assets/{{ page.lecturepdf }}){% endif %}\]\[{%if page.lecturenb %}[Jupyter Lecture slides]({{ site.nbviewer }}/{{ page.lecturenb }}){% endif %}\] 
-
-Lab Class
----------
-
-The notebook for the lab class can be downloaded from
-[here]({{ site.nbviewer }}/{{ page.labclass }}).
-
-To obtain the lab class in ipython notebook, first open the ipython
-notebook. Then paste the following code into the ipython notebook
-
-    import urllib.request
-    urllib.request.urlretrieve('{{ site.gitraw }}/{{ page.labclass }}', '{{ page.labclass }}')
-
-You should now be able to find the lab class by clicking `File->Open` on
-the jupyter notebook menu.
 
 
 Additional Material
