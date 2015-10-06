@@ -20,5 +20,5 @@ To run the labs on the University Desktop
 3. type `pip install --upgrade ipython`
 4. type `pip install jupyter`
 5. type `pip install pods`
-6. Type `jupyter notebook`
+6. Select IPython (Py3.4) Notebook from the start menu.
 
