@@ -1,9 +1,13 @@
 ---
 layout: post
 title: Week 1
+date: 2015-09-29 09:00
 venue: SB LT-2
 tagline: Introduction to machine learning and a review of probability theory
 type: lecture
+labclass: week1.ipynb
+lecturepdf: w1_probability.pdf
+lecturenb: w1_probability.ipynb
 ---
 
 Data Science Overview and Jupyter Introduction
@@ -12,21 +16,19 @@ Data Science Overview and Jupyter Introduction
 Lecture Notes
 -------------
 
-[Overview of Probability and Machine Learning. Lecture slides](./assets/w1_probability.pdf)
+{{ post.tagline }}\[{%if post.lecturepdf %}[PDF Lecture slides]({{ site.url }}/assets/{{ post.lecturepdf }}){% endif %}\]\[{%if post.lecturenb %}[Jupyter Lecture slides]({{ site.nbviewer }}/{{ post.lecturenb }}){% endif %}\] 
 
 Lab Class
 ---------
 
-Introduction to the Jupyter Notebook and Pandas
-
 The notebook for the lab class can be downloaded from
-[here](http://nbviewer.ipython.org/github/lawrennd/mlai2015/blob/master/week1.ipynb).
+[here]({{ site.nbviewer }}/{{ post.labclass }}).
 
 To obtain the lab class in ipython notebook, first open the ipython
 notebook. Then paste the following code into the ipython notebook
 
     import urllib.request
-    urllib.request.urlretrieve('https://raw.githubusercontent.com/lawrennd/mlai2015/master/week1.ipynb', 'week1.ipynb')
+    urllib.request.urlretrieve('{{ post.gitraw }}/{{ post.labclass }}', '{{ post.labclass }}')
 
 You should now be able to find the lab class by clicking `File->Open` on
 the jupyter notebook menu.
