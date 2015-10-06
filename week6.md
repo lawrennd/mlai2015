@@ -16,8 +16,8 @@ Lecture Notes
 The notebook for the lab class can be downloaded from
 [here](http://nbviewer.ipython.org/github/lawrennd/mlai2015/blob/master/week6.ipynb).
 
-    import urllib
-    urllib.urlretrieve('https://raw.githubusercontent.com/lawrennd/mlai2015/master/week6.ipynb', 'week6.ipynb')
+    import urllib.request
+    urllib.request.urlretrieve('https://raw.githubusercontent.com/lawrennd/mlai2015/master/week6.ipynb', 'week6.ipynb')
 
 You should now be able to find the lab class by clicking `File->Open` on
 the ipython notebook menu.

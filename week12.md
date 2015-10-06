@@ -23,8 +23,8 @@ The notebook for the lab class can be downloaded from
 To obtain the lab class in jupyter notebook, first open the jupyter
 notebook. Then paste the following code into the jupyter notebook
 
-    import urllib
-    urllib.urlretrieve('https://raw.githubusercontent.com/lawrennd/mlai2015/master/week12.ipynb', 'week12.ipynb')
+    import urllib.request
+    urllib.request.urlretrieve('https://raw.githubusercontent.com/lawrennd/mlai2015/master/week12.ipynb', 'week12.ipynb')
 
 You should now be able to find the lab class by clicking `File->Open` on
 the jupyter notebook menu.
