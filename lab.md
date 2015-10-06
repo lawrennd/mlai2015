@@ -15,10 +15,10 @@ Lab classes need to be submitted by the following deadlines:
 
 To run the labs on the University Desktop 
 
-1. Enter the "Software Center" and install `anaconda-python-27`
+1. Enter the "Software Center" and install `anaconda-python-3.4`
 2. Click "Start" Button and start "Anaconda Command Prompt"
 3. type `pip install --upgrade ipython`
 4. type `pip install jupyter`
-5. type `pip install --pre pods`
+5. type `pip install pods`
 6. Type `jupyter notebook`
 
