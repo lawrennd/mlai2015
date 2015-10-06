@@ -14,8 +14,7 @@ This unit aims to provide an understanding of the fundamental technologies under
 # Tutorials
 
 {% for post in site.posts reversed %}
-{% if post.type == "lecture" %}
-- {{ post.title }} {% if post.time %} {{ post.time }} {% endif %} on {{ post.date | date: "%b %-d, %Y" }}{% if post.venue %} in **{{ post.venue }}**{% endif %}.{% if post.tagline %} [*{{ post.tagline }}*]({{ post.url | prepend: site.baseurl }}).{% endif %}{% endif %}
+- {{ post.title }} {% if post.time %} {{ post.time }} {% endif %} on {{ post.date | date: "%b %-d, %Y" }}{% if post.venue %} in **{{ post.venue }}**{% endif %}.{% if post.tagline %} [*{{ post.tagline }}*]({{ post.url | prepend: site.baseurl }}).{% endif %}
 {% endfor %}
 
 Past Papers
