@@ -1,6 +1,9 @@
 ---
 layout: page
 title: Week 2
+tagline: "Objective functions, gradient descent and matrix factorization"
+venue: SB-LT2
+time: "9:00"
 ---
 
 Objective Functions: A Simple Example with Matrix Factorization

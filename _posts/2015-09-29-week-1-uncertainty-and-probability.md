@@ -1,6 +1,8 @@
 ---
-layout: page
+layout: post
 title: Week 1
+venue: SB LT-2
+tagline: Introduction to machine learning and a review of probability theory
 ---
 
 Data Science Overview and Jupyter Introduction

@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Week 5
+tagline: Reading Week
 ---
 
 Reading Week
