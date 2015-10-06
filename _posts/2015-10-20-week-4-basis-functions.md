@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: lecture
 title: Week 4
 tagline: Basis functions
 venue: SB LT-2

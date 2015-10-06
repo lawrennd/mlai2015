@@ -1,5 +1,5 @@
 ---
-layout: layout
+layout: lecture
 title: Week 3
 tagline: Linear algebra and regression
 venue: SB-LT2

@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: lecture
 title: Week 6
 tagline: Generalisation
 venue: "SB LT-2"

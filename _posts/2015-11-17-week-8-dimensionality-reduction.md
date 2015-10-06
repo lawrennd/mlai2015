@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: lecture
 title: Week 8
 tagline: Dimensionality reduction
 venue: "SB LT-2"

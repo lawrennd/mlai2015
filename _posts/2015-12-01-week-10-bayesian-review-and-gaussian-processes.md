@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: lecture
 title: Week 10
 tagline: Bayesian review
 venue: "SB LT-2"

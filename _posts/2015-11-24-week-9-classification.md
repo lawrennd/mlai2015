@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: lecture
 title: Week 9
 tagline: Classification
 venue: "SB LT-2"

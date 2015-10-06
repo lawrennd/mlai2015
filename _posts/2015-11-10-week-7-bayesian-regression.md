@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: lecture
 title: Week 7
 tagline: Bayesian regression
 venue: "SB LT-2"
