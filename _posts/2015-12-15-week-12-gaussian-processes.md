@@ -11,7 +11,6 @@ labclass: week12.ipynb
 lecturepdf: w12_gaussianProcesses.pdf
 ---
 
-
 ### Reading
 
 -  Section 3.7--3.8 of Rogers and Girolami (pg 122--133).
