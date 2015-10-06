@@ -16,7 +16,7 @@ Data Science Overview and Jupyter Introduction
 Lecture Notes
 -------------
 
-{{ tagline }}\[{%if post.lecturepdf %}[PDF Lecture slides]({{ site.url }}/assets/{{ post.lecturepdf }}){% endif %}\]\[{%if post.lecturenb %}[Jupyter Lecture slides]({{ site.nbviewer }}/{{ post.lecturenb }}){% endif %}\] 
+{{ page.tagline }}\[{%if post.lecturepdf %}[PDF Lecture slides]({{ site.url }}/assets/{{ post.lecturepdf }}){% endif %}\]\[{%if post.lecturenb %}[Jupyter Lecture slides]({{ site.nbviewer }}/{{ post.lecturenb }}){% endif %}\] 
 
 Lab Class
 ---------
