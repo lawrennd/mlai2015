@@ -8,6 +8,7 @@ time: "9:00"
 labclass: week2.ipynb
 lecturepdf: w2_objective.pdf
 lecturenb: w2_objective.ipynb
+youtube: Gq6bjcm8AqQ
 ---
 
 
