@@ -5,7 +5,7 @@ tagline: Gaussian processes
 venue: "SB LT-2"
 labvenue: Mappin F110
 labtime: "11:00"
-date: 2015-12-01 09:00
+date: 2015-12-15 09:00
 time: "9:00"
 labclass: week12.ipynb
 lecturepdf: w12_gaussianProcesses.pdf
