@@ -5,6 +5,9 @@ description: > # this means to ignore newlines until "baseurl:"
   Module on machine learning and Adaptive Intelligence as taught in 2015.
 baseurl: "/mlai2015" # the subpath of your site, e.g. /blog/
 url: "http://inverseprobability.com/" # the base hostname & protocol for your site
+youtube:
+- width: 800
+- height: 600
 gitraw: "https://raw.githubusercontent.com/lawrennd/mlai2015/master"
 nbviewer: "http://nbviewer.ipython.org/github/lawrennd/mlai2015/blob/master"
 twitter_username: lawrennd

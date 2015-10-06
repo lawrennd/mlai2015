@@ -3,15 +3,34 @@ layout: page
 title: Week 3
 tagline: Linear algebra and regression
 venue: SB-LT2
+date: 2015-10-13 09:00
 time: "9:00"
 type: lecture
+labclass: week3.ipynb
+lecturepdf: w3_regression.pdf
+youtube:
 ---
 
-Linear Algebra and Regression
-=============================
+{% if page.youtube %}
+<iframe width="{{ site.youtube.width }}" height="{{ site.youtube.height }}" src="https://www.youtube.com/embed/{{ page.youtube }}" frameborder="0" allowfullscreen></iframe>
+{% endif %}
 
-For this week the lecture slides are available
-[here](./assets/w3_regression.pdf).
+{{ page.tagline }} \[{%if page.lecturepdf %}[PDF Lecture slides]({{ site.url }}{{ site.baseurl }}/assets/{{ page.lecturepdf }}){% endif %}\]\[{%if page.lecturenb %}[Jupyter Lecture slides]({{ site.nbviewer }}/{{ page.lecturenb }}){% endif %}\] 
+
+Lab Class
+---------
+
+The notebook for the lab class can be downloaded from
+[here]({{ site.nbviewer }}/{{ page.labclass }}).
+
+To obtain the lab class in ipython notebook, first open the ipython
+notebook. Then paste the following code into the ipython notebook
+
+    import urllib.request
+    urllib.request.urlretrieve('{{ site.gitraw }}/{{ page.labclass }}', '{{ page.labclass }}')
+
+You should now be able to find the lab class by clicking `File->Open` on
+the jupyter notebook menu.
 
 ### YouTube Video
 

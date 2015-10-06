@@ -1,19 +1,17 @@
 ---
-layout: page
-title: Week 2
-tagline: "Objective functions, gradient descent and matrix factorization"
-venue: SB-LT2
-time: "9:00"
-type: lecture
-labclass: week2.ipynb
-lecturepdf: w2_objective.pdf
-lecturenb: w2_objective.ipynb
+layout: post
 ---
+<div class="post">
 
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title }}</h1>
+    <p class="post-meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
+  </header>
+
+  <article class="post-content">
 {% if page.youtube %}
 <iframe width="{{ site.youtube.width }}" height="{{ site.youtube.height }}" src="https://www.youtube.com/embed/{{ page.youtube }}" frameborder="0" allowfullscreen></iframe>
 {% endif %}
-
 
 **{{ page.tagline }}** \[{%if page.lecturepdf %}[PDF Lecture slides]({{ site.url }}{{ site.baseurl }}/assets/{{ page.lecturepdf }}){% endif %}\]\[{%if page.lecturenb %}[Jupyter Lecture slides]({{ site.nbviewer }}/{{ page.lecturenb }}){% endif %}\] 
 
@@ -32,9 +30,7 @@ notebook. Then paste the following code into the ipython notebook
 You should now be able to find the lab class by clicking `File->Open` on
 the jupyter notebook menu.
 
+{{ content }}
+  </article>
 
-Additional Material
--------------------
-
--   [The \$1 Million Netflix Prize](http://www.netflixprize.com/)
-
+</div>
