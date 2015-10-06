@@ -18,10 +18,10 @@ layout: post
     <p>To obtain the lab class in ipython notebook, first open the ipython
       notebook. Then paste the following code into the ipython notebook
 
-      {% highlight python %}
-      import urllib.request
-      urllib.request.urlretrieve('{{ site.gitraw }}/{{ page.labclass }}', '{{ page.labclass }}')
-      {% endhighlight %}
+{% highlight python %}
+import urllib.request
+urllib.request.urlretrieve('{{ site.gitraw }}/{{ page.labclass }}', '{{ page.labclass }}')
+{% endhighlight %}
   
     <p>You should now be able to find the lab class by clicking <code>File->Open</code> on
       the jupyter notebook menu.
