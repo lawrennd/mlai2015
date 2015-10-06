@@ -5,9 +5,9 @@ title: Managed Desktop
 
 These are instructions for getting the right version of Python on the CICS managed desktop.
 
-There are several versions of Python on the managed desktop. We are using Python 3.
+Notes by [Mike Croucher](http://www.walkingrandomly.com)
 
-There are several versions of Python on the managed desktop.
+There are several versions of Python on the managed desktop. We are using Python 3.
 
 **Use the correct version of Anaconda Python**
 
