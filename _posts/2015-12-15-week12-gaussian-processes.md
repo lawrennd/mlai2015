@@ -1,6 +1,10 @@
 ---
 layout: page
 title: Week 12
+tagline: Gaussian processes
+venue: SB LT-2
+type: lecture
+time: "9:00"
 ---
 
 Bayesian Review and Gaussian Processes

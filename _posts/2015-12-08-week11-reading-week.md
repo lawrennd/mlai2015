@@ -1,6 +1,7 @@
 ---
-layout: page
+layout: post
 title: Week 11
+tagline: Reading Week
 ---
 
 Reading Week

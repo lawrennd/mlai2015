@@ -4,6 +4,7 @@ title: Week 4
 tagline: Basis functions
 venue: SB LT-2
 time: "9:00"
+type: lecture
 ---
 
 Basis Functions

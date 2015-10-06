@@ -4,6 +4,7 @@ title: Week 2
 tagline: "Objective functions, gradient descent and matrix factorization"
 venue: SB-LT2
 time: "9:00"
+type: lecture
 ---
 
 Objective Functions: A Simple Example with Matrix Factorization

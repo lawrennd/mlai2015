@@ -4,6 +4,7 @@ title: Week 3
 tagline: Linear algebra and regression
 venue: SB-LT2
 time: "9:00"
+type: lecture
 ---
 
 Linear Algebra and Regression

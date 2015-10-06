@@ -1,6 +1,10 @@
 ---
-layout: page
+layout: post
 title: Week 8
+tagline: Dimensionality reduction
+time: "9:00"
+venue: "SB LT-2"
+type: lecture
 ---
 
 Dimensionality Reduction

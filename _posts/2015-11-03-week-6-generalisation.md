@@ -1,6 +1,10 @@
 ---
-layout: page
+layout: post
 title: Week 6
+tagline: Generalisation
+time: "9:00"
+venue: "SB LT-2"
+type: lecture
 ---
 
 Generalisation

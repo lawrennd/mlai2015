@@ -1,6 +1,10 @@
 ---
-layout: page
+layout: post
 title: Week 7
+tagline: Bayesian regression
+time: "9:00"
+venue: "SB LT-2"
+type: lecture
 ---
 
 Bayesian Regression
