@@ -14,7 +14,7 @@ This unit aims to provide an understanding of the fundamental technologies under
 # Tutorials
 
 {% for post in site.posts reversed %}
-- [{{ post.title }}]({{ post.url | prepend: site.baseurl }}) {% if post.time %} {{ post.time }} {% endif %} on {{ post.date | date: "%b %-d, %Y" }}{% if post.venue %} in **{{ post.venue }}**{% endif %}.{% if post.tagline %} *{{ post.tagline }}*.{% endif %}
+- {{ post.title }} {% if post.time %} {{ post.time }} {% endif %} on {{ post.date | date: "%b %-d, %Y" }}{% if post.venue %} in **{{ post.venue }}**{% endif %}.{% if post.tagline %} [*{{ post.tagline }}*]({{ post.url | prepend: site.baseurl }}).{% endif %}
 {% endfor %}
 
 1.  [Tuesday 9-10 SB-LT2; Tuesday 11-13 MAPP-F110 Lab Class](./week1.html)
