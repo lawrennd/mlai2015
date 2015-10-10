@@ -1,7 +1,7 @@
 ---
 layout: lecture
 title: Week 9
-tagline: "Classification: Naive Bayes"
+tagline: "Naive Bayes"
 venue: "SB LT-2"
 labvenue: Mappin F110
 labtime: "11:00"
