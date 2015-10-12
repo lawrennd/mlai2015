@@ -8,6 +8,7 @@ time: "9:00"
 type: lecture
 labclass: week3.ipynb
 lecturepdf: w3_regression.pdf
+lecturenb: w3_regression.ipynb
 ---
 
 ### YouTube Video
