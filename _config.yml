@@ -13,5 +13,9 @@ nbviewer: "http://nbviewer.ipython.org/github/lawrennd/mlai2015/blob/master"
 twitter_username: lawrennd
 github_username:  lawrennd
 
+analytics:
+  google:
+    tracking_id: UA-62968536-1
+
 # Build settings
 markdown: kramdown
