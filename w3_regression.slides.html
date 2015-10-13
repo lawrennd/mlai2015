@@ -215,7 +215,8 @@ div.output_prompt {
 <body>
 <div class="reveal">
 <div class="slides">
-
+<div style=display:none>
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
@@ -228,7 +229,8 @@ div.output_prompt {
 </div>
 </div>
 
-</div><div style=display:none>
+</div>
+    </div><div style=display:none>
     
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -274,7 +276,10 @@ div.output_prompt {
 
 </div>
 </div>
-</div>
+</div></section>
+    </section><section>
+    <section>
+    
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -296,7 +301,10 @@ rated training data.</p>
 
 </div>
 </div>
-</div>
+</div></section>
+    </section><section>
+    <section>
+    
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -485,7 +493,10 @@ AJAWIQcASIuQAwCkRcgBANL6f0TGkDgzFatYAAAAAElFTkSuQmCC
 </div>
 </div>
 
-</div>
+</div></section>
+    </section><section>
+    <section>
+    
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -506,7 +517,10 @@ Image from Wikimedia Commons <a href="http://bit.ly/16kMKHQ">http://bit.ly/16kMK
 
 </div>
 </div>
-</div>
+</div></section>
+    </section><section>
+    <section>
+    
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -703,7 +717,10 @@ quality score.</p>
 
 </div>
 </div>
-</div>
+</div></section>
+    </section><section>
+    <section>
+    
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -722,7 +739,10 @@ quality score.</p>
 
 </div>
 </div>
-</div>
+</div></section>
+    </section><section>
+    <section>
+    
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -1023,7 +1043,10 @@ IiVS8hQRESnR/wdQjfEN0tRcSQAAAABJRU5ErkJggg==
 </div>
 
 </div>
-    </div>
+    </div></section>
+    </section><section>
+    <section>
+    
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -1051,18 +1074,21 @@ $$<p>$\sigma^2$ is the variance of the density and $\mu$ is the mean.</p>
 
 </div>
 </div>
-</div>
+</div></section>
+    </section><section>
+    <section>
+    
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Two-Important-Gaussian-Properties">Two Important Gaussian Properties<a class="anchor-link" href="#Two-Important-Gaussian-Properties">&#182;</a></h3><p><strong>Sum of Gaussians</strong></p>
+<h3 id="Two-Important-Gaussian-Properties">Two Important Gaussian Properties<a class="anchor-link" href="#Two-Important-Gaussian-Properties">&#182;</a></h3><p><strong>Sum of Gaussian</strong></p>
 <ul>
 <li>Sum of Gaussian variables is also Gaussian.
 $$y_i \sim \mathcal{N}(\mu, \sigma^2)$$ 
 And the sum is distributed as
-$$\sum_{i=1}^{n} y_i \sim \mathcal{N}{\sum_{i=1}^n \mu_i}{\sum_{i=1}^n \sigma_i^2}$$
+$$\sum_{i=1}^{n} y_i \sim \mathcal{N}\left(\sum_{i=1}^n \mu_i,\sum_{i=1}^n \sigma_i^2\right)$$
 (<em>Aside</em>: As sum increases, sum of non-Gaussian, finite variance variables is
 also Gaussian <a href="https://en.wikipedia.org/wiki/Central_limit_theorem">central limit theorem</a>.)</li>
 </ul>
@@ -1103,7 +1129,7 @@ $$p\left(y_i|x_i\right)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp \left(-\frac{\left(y_i
 </li>
 <li><p>This gives us a ‘noisy function’.</p>
 </li>
-<li><p>This is known as a process.</p>
+<li><p>This is known as a stochastic process.</p>
 </li>
 </ul>
 
@@ -1174,9 +1200,25 @@ data point.</p>
 </li>
 <li><p>For independent variables:
 $$p(\mathbf{y}) = \prod_{i=1}^n p(y_i)$$
-$$p(\mathbf{y}|\mathbf{x}, m, c) = \prod_{i=1}^n p(y_i|x_i, m, c)$$&lt;/span&gt;&lt;3&gt;<span>
-$$p(\mathbf{y}|\mathbf{x}, m, c) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi \sigma^2}}\exp \left(-\frac{\left(y_i-mx_i-c\right)^{2}}{2\sigma^2}\right).$$</span>&lt;4&gt;<span>
-$$p(\mathbf{y}|\mathbf{x}, m, c) = \frac{1}{\left(2\pi \sigma^2\right)^{\frac{n}{2}}}\exp \left(-\frac{\sum_{i=1}^n\left(y_i-mx_i-c\right)^{2}}{2\sigma^2}\right).$$</span></p>
+$$p(\mathbf{y}|\mathbf{x}, m, c) = \prod_{i=1}^n p(y_i|x_i, m, c)$$</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="For-Gaussian">For Gaussian<a class="anchor-link" href="#For-Gaussian">&#182;</a></h3><ul>
+<li><p>i.i.d. assumption</p>
+<p>$$p(\mathbf{y}|\mathbf{x}, m, c) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi \sigma^2}}\exp \left(-\frac{\left(y_i-mx_i-c\right)^{2}}{2\sigma^2}\right).$$
+  $$p(\mathbf{y}|\mathbf{x}, m, c) = \frac{1}{\left(2\pi \sigma^2\right)^{\frac{n}{2}}}\exp \left(-\frac{\sum_{i=1}^n\left(y_i-mx_i-c\right)^{2}}{2\sigma^2}\right).$$</p>
 </li>
 </ul>
 
@@ -1280,7 +1322,7 @@ set provided.</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Connection:-Sum-of-Squares-Error">Connection: Sum of Squares Error<a class="anchor-link" href="#Connection:-Sum-of-Squares-Error">&#182;</a></h3><ul>
 <li><p>Ignoring terms which don’t depend on $m$ and $c$ gives
-$$E(m, c) \propto \sum_{i=1}^n (y_i - fx_i))^2$$
+$$E(m, c) \propto \sum_{i=1}^n (y_i - f(x_i))^2$$
 where $f(x_i) = mx_i + c$.</p>
 </li>
 <li><p>This is known as the <em>sum of squares</em> error function.</p>
@@ -1292,7 +1334,10 @@ Gaussian likelihood.</p>
 
 </div>
 </div>
-</div>
+</div></section>
+    </section><section>
+    <section>
+    
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -1358,17 +1403,30 @@ $$\frac{\text{d}E(m)}{\text{d}m} =</p>
 
 <pre><code>  -2\sum_{i=1}^n x_i
   \left(y_i-
-    m x_i - c \right)$$            
-</code></pre>
-<p>$$0 =</p>
+    m x_i - c \right)$$            </code></pre>
+</li>
+</ul>
 
-<pre><code>  -2\sum_{i=1}^n x_iy_i
-  +2\sum_{i=1}^n
-    m x_i^2 +2\sum_{i=1}^n cx_i$$
+</div>
+</div>
+</div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Learning-is-Optimization">Learning is Optimization<a class="anchor-link" href="#Learning-is-Optimization">&#182;</a></h3><ul>
+<li>Fixed point equations
+  $$0 =
+<pre><code>    -2\sum_{i=1}^n x_iy_i
+    +2\sum_{i=1}^n
+      m x_i^2 +2\sum_{i=1}^n cx_i$$
 </code></pre>
-<p>$$m  =    \frac{\sum_{i=1}^n \left(y_i</p>
-
-<pre><code>  -c\right)x_i}{\sum_{i=1}^nx_i^2}$$</code></pre>
+  $$m  =    \frac{\sum_{i=1}^n \left(y_i
+<pre><code>    -c\right)x_i}{\sum_{i=1}^nx_i^2}$$</code></pre>
 </li>
 </ul>
 
@@ -1397,17 +1455,26 @@ $$\frac{\text{d}E(m)}{\text{d}m} =</p>
 <p>$$0 =</p>
 
 <pre><code>  -2\sum_{i=1}^n\left(y_i-
-    m x_i - c \right)$$
-</code></pre>
-<p>$$0 =</p>
+    m x_i - c \right)$$</code></pre>
+</li>
+</ul>
 
-<pre><code>  -2\sum_{i=1}^n y_i
-  +2\sum_{i=1}^n
-    m x_i +2n c$$
-</code></pre>
-<p>$$c  =    \frac{\sum_{i=1}^n \left(y_i</p>
-
-<pre><code>  -mx_i\right)}{n}$$</code></pre>
+</div>
+</div>
+</div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Learning-is-Optimization">Learning is Optimization<a class="anchor-link" href="#Learning-is-Optimization">&#182;</a></h2><ul>
+<li>Fixed point equations
+  $$0 = -2\sum_{i=1}^n y_i +2\sum_{i=1}^n m x_i +2n c$$
+  $$c  =    \frac{\sum_{i=1}^n \left(y_i
+<pre><code>    -mx_i\right)}{n}$$</code></pre>
 </li>
 </ul>
 
