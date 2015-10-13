@@ -7,8 +7,10 @@ date: 2015-10-13 09:00
 time: "9:00"
 type: lecture
 labclass: week3.ipynb
+reveal: w3_regression.slides.html
 lecturepdf: w3_regression.pdf
 lecturenb: w3_regression.ipynb
+youtube: 5VPr6NbHHjg
 ---
 
 ### YouTube Video
