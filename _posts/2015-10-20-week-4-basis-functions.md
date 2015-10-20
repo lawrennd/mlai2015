@@ -9,6 +9,8 @@ date: 2015-10-20 09:00
 time: "9:00"
 type: lecture
 labclass: week4.ipynb
+reveal: w4_basisFunctions.slides.html
+lecturenb: w4_basisFunctions.ipynb
 lecturepdf: w4_basisFunctions.pdf
 ---
 
