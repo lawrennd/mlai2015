@@ -1,15 +1,15 @@
 ---
 layout: lecture
-title: Week 6
+title: Week 5
 tagline: Generalisation
 venue: "SB LT-2"
 labvenue: Mappin F110
 labtime: "11:00"
-date: 2015-11-03 09:00
+date: 2015-10-27 09:00
 time: "9:00"
 type: lecture
-labclass: week6.ipynb
-lecturepdf: w6_generalisation.pdf
+labclass: week5.ipynb
+lecturepdf: w5_generalisation.pdf
 ---
 
 

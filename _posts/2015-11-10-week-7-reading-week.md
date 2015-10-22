@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Week 5
-date: 2015-10-27 09:00
+title: Week 7
+date: 2015-11-10 09:00
 tagline: Reading Week
 ---
 

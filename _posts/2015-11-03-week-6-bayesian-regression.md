@@ -1,15 +1,15 @@
 ---
 layout: lecture
-title: Week 7
+title: Week 6
 tagline: Bayesian regression
 venue: "SB LT-2"
 labvenue: Mappin F110
 labtime: "11:00"
-date: 2015-11-10 09:00
+date: 2015-11-03 09:00
 time: "9:00"
 type: lecture
-labclass: week7.ipynb
-lecturepdf: w7_bayesianRegression.pdf
+labclass: week6.ipynb
+lecturepdf: w6_bayesianRegression.pdf
 ---
 
 ### YouTube Videos
