@@ -9,7 +9,10 @@ date: 2015-10-27 09:00
 time: "9:00"
 type: lecture
 labclass: week5.ipynb
+reveal: w5_generalisation.slides.html
+lecturenb: w5_generalisation.ipynb
 lecturepdf: w5_generalisation.pdf
+youtube: wy0J6cgqlf8
 ---
 
 
