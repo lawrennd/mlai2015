@@ -12,6 +12,7 @@ labclass: week4.ipynb
 reveal: w4_basisFunctions.slides.html
 lecturenb: w4_basisFunctions.ipynb
 lecturepdf: w4_basisFunctions.pdf
+youtube: kS2Fu2De6YQ
 ---
 
 
