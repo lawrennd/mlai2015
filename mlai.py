@@ -181,6 +181,65 @@ class LM():
         """Compute the log likelihood."""
         self.update_sum_squares()
         return -self.num_data/2.*np.log(np.pi*2.)-self.num_data/2.*np.log(self.sigma2)-self.sum_squares/(2.*self.sigma2)
+
+class BLM():
+    """Bayesian Linear model
+    :param X: input values
+    :type X: numpy.ndarray
+    :param y: target values
+    :type y: numpy.ndarray
+    :param alpha: Scale of prior on parameters
+    :type alpha: float
+    :param sigma2: Noise variance
+    :type sigma2: float
+    :param basis: basis function 
+    :param type: function"""
+
+    def __init__(self, X, y, alpha, sigma2, basis, num_basis, **kwargs):
+        "Initialise"
+        self.X = X
+        self.y = y
+        self.num_data = y.shape[0]
+        self.sigma2 = sigma2
+        self.alpha = alpha
+        self.basis = basis
+        self.num_basis = num_basis
+        self.basis_args = kwargs
+        self.Phi = basis(X, num_basis=num_basis, **kwargs)
+
+    def update_QR(self):
+        "Perform the QR decomposition on the basis matrix."
+        self.Q, self.R = np.linalg.qr(np.vstack([self.Phi, self.alpha*np.eye(self.num_basis)]))
+
+    def fit(self):
+        """Minimize the objective function with respect to the parameters"""
+        self.update_QR()
+        self.mu_w = sp.linalg.solve_triangular(self.R, np.dot(self.Q[:self.y.shape[0], :].T, self.y))
+        self.update_sum_squares()
+
+    def predict(self, X):
+        """Return the result of the prediction function."""
+        return np.dot(self.basis(X, self.num_basis, **self.basis_args), self.mu_w)
+        
+    def update_f(self):
+        """Update values at the prediction points."""
+        self.f_bar = np.dot(self.Phi, self.mu_w)
+        #self.f_var = np.dot(self.Phi, 
+
+    def update_sum_squares(self):
+        """Compute the sum of squares error."""
+        self.update_f()
+        self.sum_squares = ((self.y-self.f_bar)**2).sum()
+        
+    def objective(self):
+        """Compute the objective function."""
+        self.update_sum_squares()
+        return self.sum_squares
+
+    def log_likelihood(self):
+        """Compute the log likelihood."""
+        self.update_sum_squares()
+        return -self.num_data/2.*np.log(np.pi*2.)-self.num_data/2.*np.log(self.sigma2)-self.sum_squares/(2.*self.sigma2)
     
 
 def polynomial(x, num_basis=4, data_limits=[-1., 1.]):
@@ -289,7 +348,6 @@ def plot_basis(basis, x_min, x_max, fig, ax, loc, text, diagrams='./diagrams', f
     
 def plot_marathon_fit(model, data_limits, fig, ax, x_val=None, y_val=None, objective=None, diagrams='./diagrams', fontsize=20, objective_ylim=None, prefix='olympic'):
     "Plot fit of the marathon data alongside error."
-
     ax[0].cla()
     ax[0].plot(model.X, model.y, 'o', color=[1, 0, 0], markersize=6, linewidth=3)
     if x_val is not None and y_val is not None:
@@ -315,10 +373,11 @@ def plot_marathon_fit(model, data_limits, fig, ax, x_val=None, y_val=None, objec
         ax[1].set_xlim([-1, max_basis])
         ax[1].set_xlabel('polynomial order', fontsize=fontsize)
 
-    file_name = prefix + '_' + model.basis.__name__ + str(model.num_basis) + '.svg'
+    file_name = prefix + '_' + model.__class__.__name__ + '_' + model.basis.__name__ + str(model.num_basis) + '.svg'
     plt.savefig(diagrams + '/' +file_name)
 
-
+    
+##########          Week 12          ##########
 class GP():
     def __init__(self, X, y, sigma2, kernel, **kwargs):
         self.K = compute_kernel(X, X, kernel, **kwargs)
