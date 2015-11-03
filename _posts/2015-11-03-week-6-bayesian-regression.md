@@ -10,6 +10,7 @@ time: "9:00"
 type: lecture
 labclass: week6.ipynb
 lecturepdf: w6_bayesianRegression.pdf
+youtube: 17zr5dGcUzE
 ---
 
 ### YouTube Videos
