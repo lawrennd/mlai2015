@@ -161,7 +161,7 @@ class LM():
 
     def predict(self, X):
         """Return the result of the prediction function."""
-        return np.dot(self.basis(X, self.num_basis, **self.basis_args), self.w_star)
+        return np.dot(self.basis(X, self.num_basis, **self.basis_args), self.w_star), None
         
     def update_f(self):
         """Update values at the prediction points."""
@@ -206,25 +206,35 @@ class BLM():
         self.num_basis = num_basis
         self.basis_args = kwargs
         self.Phi = basis(X, num_basis=num_basis, **kwargs)
-
+        
     def update_QR(self):
         "Perform the QR decomposition on the basis matrix."
-        self.Q, self.R = np.linalg.qr(np.vstack([self.Phi, self.alpha*np.eye(self.num_basis)]))
+        self.Q, self.R = np.linalg.qr(np.vstack([self.Phi, np.sqrt(self.sigma2/self.alpha)*np.eye(self.num_basis)]))
 
     def fit(self):
         """Minimize the objective function with respect to the parameters"""
         self.update_QR()
-        self.mu_w = sp.linalg.solve_triangular(self.R, np.dot(self.Q[:self.y.shape[0], :].T, self.y))
+        self.QTy = np.dot(self.Q[:self.y.shape[0], :].T, self.y)
+        self.mu_w = sp.linalg.solve_triangular(self.R, self.QTy)
+        self.RTinv = sp.linalg.solve_triangular(self.R.T, np.eye(self.R.shape[0]))
+        self.C_w = np.dot(self.RTinv, self.RTinv.T)
         self.update_sum_squares()
 
-    def predict(self, X):
+    def predict(self, X, full_cov=False):
         """Return the result of the prediction function."""
-        return np.dot(self.basis(X, self.num_basis, **self.basis_args), self.mu_w)
+        Phi = self.basis(X, self.num_basis, **self.basis_args)
+        # A= R^-T Phi.T
+        A = sp.linalg.solve_triangular(self.R.T, Phi.T)
+        mu = np.dot(A.T, self.QTy)
+        if full_cov:
+            return mu, self.sigma2*np.dot(A.T, A)
+        else:
+            return mu, self.sigma2*(A*A).sum(0)[:, None]
         
     def update_f(self):
         """Update values at the prediction points."""
         self.f_bar = np.dot(self.Phi, self.mu_w)
-        #self.f_var = np.dot(self.Phi, 
+        self.f_cov = (self.Q[:self.y.shape[0], :]*self.Q[:self.y.shape[0], :]).sum(1)
 
     def update_sum_squares(self):
         """Compute the sum of squares error."""
@@ -356,9 +366,14 @@ def plot_marathon_fit(model, data_limits, fig, ax, x_val=None, y_val=None, objec
     ylim = ax[0].get_ylim()
 
     x_pred = np.linspace(data_limits[0], data_limits[1], 130)[:, None]
-    y_pred = model.predict(x_pred)
+    y_pred, y_var = model.predict(x_pred)
     
     ax[0].plot(x_pred, y_pred, color=[0, 0, 1], linewidth=2)
+    if y_var is not None:
+        y_err = np.sqrt(y_var)*2
+        ax[0].plot(x_pred, y_pred + y_err, color=[0, 0, 1], linewidth=2)
+        ax[0].plot(x_pred, y_pred - y_err, color=[0, 0, 1], linewidth=2)
+        
     ax[0].set_xlabel('year', fontsize=fontsize)
     ax[0].set_ylim(ylim)
     plt.sca(ax[0])
