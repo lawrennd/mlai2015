@@ -216,7 +216,7 @@ class BLM():
         self.update_QR()
         self.QTy = np.dot(self.Q[:self.y.shape[0], :].T, self.y)
         self.mu_w = sp.linalg.solve_triangular(self.R, self.QTy)
-        self.RTinv = sp.linalg.solve_triangular(self.R.T, np.eye(self.R.shape[0]))
+        self.RTinv = sp.linalg.solve_triangular(self.R, np.eye(self.R.shape[0]), trans='T')
         self.C_w = np.dot(self.RTinv, self.RTinv.T)
         self.update_sum_squares()
 
@@ -224,7 +224,7 @@ class BLM():
         """Return the result of the prediction function."""
         Phi = self.basis(X, self.num_basis, **self.basis_args)
         # A= R^-T Phi.T
-        A = sp.linalg.solve_triangular(self.R.T, Phi.T)
+        A = sp.linalg.solve_triangular(self.R, Phi.T, trans='T')
         mu = np.dot(A.T, self.QTy)
         if full_cov:
             return mu, self.sigma2*np.dot(A.T, A)
@@ -248,8 +248,8 @@ class BLM():
 
     def log_likelihood(self):
         """Compute the log likelihood."""
-        self.update_sum_squares()
-        return -self.num_data/2.*np.log(np.pi*2.)-self.num_data/2.*np.log(self.sigma2)-self.sum_squares/(2.*self.sigma2)
+        #self.update_sum_squares()
+        return -self.num_data*np.log(self.sigma2*np.pi*2.)+2*np.log(np.abs(np.linalg.det(self.Q[self.y.shape[0]:, :])))-(self.y*self.y).sum()/self.sigma2 + (self.QTy*self.QTy).sum()/self.sigma2 
     
 
 def polynomial(x, num_basis=4, data_limits=[-1., 1.]):
@@ -356,7 +356,7 @@ def plot_basis(basis, x_min, x_max, fig, ax, loc, text, diagrams='./diagrams', f
 
 
     
-def plot_marathon_fit(model, data_limits, fig, ax, x_val=None, y_val=None, objective=None, diagrams='./diagrams', fontsize=20, objective_ylim=None, prefix='olympic'):
+def plot_marathon_fit(model, data_limits, fig, ax, x_val=None, y_val=None, objective=None, diagrams='./diagrams', fontsize=20, objective_ylim=None, prefix='olympic', title=None):
     "Plot fit of the marathon data alongside error."
     ax[0].cla()
     ax[0].plot(model.X, model.y, 'o', color=[1, 0, 0], markersize=6, linewidth=3)
@@ -371,8 +371,8 @@ def plot_marathon_fit(model, data_limits, fig, ax, x_val=None, y_val=None, objec
     ax[0].plot(x_pred, y_pred, color=[0, 0, 1], linewidth=2)
     if y_var is not None:
         y_err = np.sqrt(y_var)*2
-        ax[0].plot(x_pred, y_pred + y_err, color=[0, 0, 1], linewidth=2)
-        ax[0].plot(x_pred, y_pred - y_err, color=[0, 0, 1], linewidth=2)
+        ax[0].plot(x_pred, y_pred + y_err, '--', color=[0, 0, 1], linewidth=1)
+        ax[0].plot(x_pred, y_pred - y_err, '--', color=[0, 0, 1], linewidth=1)
         
     ax[0].set_xlabel('year', fontsize=fontsize)
     ax[0].set_ylim(ylim)
@@ -387,7 +387,9 @@ def plot_marathon_fit(model, data_limits, fig, ax, x_val=None, y_val=None, objec
             ax[1].set_ylim(objective_ylim)
         ax[1].set_xlim([-1, max_basis])
         ax[1].set_xlabel('polynomial order', fontsize=fontsize)
-
+        if title is not None:
+            ax[1].set_title(title, fontsize=fontsize)
+            
     file_name = prefix + '_' + model.__class__.__name__ + '_' + model.basis.__name__ + str(model.num_basis) + '.svg'
     plt.savefig(diagrams + '/' +file_name)
 
