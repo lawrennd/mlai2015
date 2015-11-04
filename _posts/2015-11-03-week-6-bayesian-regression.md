@@ -9,6 +9,8 @@ date: 2015-11-03 09:00
 time: "9:00"
 type: lecture
 labclass: week6.ipynb
+reveal: w6_bayesianRegression.slides.html
+lecturenb: w5_bayesianRegression.ipynb
 lecturepdf: w6_bayesianRegression.pdf
 youtube: 17zr5dGcUzE
 ---
