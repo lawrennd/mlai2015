@@ -16,6 +16,10 @@ This unit aims to provide an understanding of the fundamental technologies under
 - {{ post.title }} {% if post.time %} {{ post.time }} {% endif %} on {{ post.date | date: "%b %-d, %Y" }}{% if post.venue %} in **{{ post.venue }}**{% endif %}.{% if post.tagline %} [*{{ post.tagline }}*]({{ post.url | prepend: site.baseurl }}).{% endif %}
 {% endfor %}
 
+# Assessment
+
+The unit will be assessed by submitted practical assignments (7 labs at 10% each leading to 70%) and by [exam](./exam.html) (30%). 
+
 Past Papers
 -----------
 

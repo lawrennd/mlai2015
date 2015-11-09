@@ -32,5 +32,8 @@ urllib.request.urlretrieve('{{ site.gitraw }}/{{ page.labclass }}', '{{ page.lab
 
       {{ content }}
   </article>
+  {% if site.comments %}
+  {% include disqus_comment_code.html %}
+  {% endif %}
 
 </div>
