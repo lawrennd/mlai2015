@@ -13,6 +13,7 @@ nbviewer: "http://nbviewer.ipython.org/github/lawrennd/mlai2015/blob/master"
 twitter_username: lawrennd
 github_username:  lawrennd
 comments: true
+disqus : inverseprobabilitycom
 
 analytics:
   google:
