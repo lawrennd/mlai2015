@@ -9,6 +9,8 @@ date: 2015-11-17 09:00
 time: "9:00"
 type: lecture
 labclass: week8.ipynb
+reveal: w8_unsupervisedLearning.slides.html
+lecturenb: w8_unsupervisedLearning.ipynb
 lecturepdf: w8_unsupervisedLearning.pdf
 ---
 
