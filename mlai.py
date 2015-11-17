@@ -487,6 +487,38 @@ class BLM(ProbMapModel):
         #self.update_sum_squares()
         return -self.num_data*np.log(self.sigma2*np.pi*2.)+2*np.log(np.abs(np.linalg.det(self.Q[self.y.shape[0]:, :])))-(self.y*self.y).sum()/self.sigma2 + (self.QTy*self.QTy).sum()/self.sigma2 
 
+##########          Week 8            ##########
+
+    
+
+# Code for loading pgm from http://stackoverflow.com/questions/7368739/numpy-and-16-bit-pgm
+def load_pgm(filename, directory=None, byteorder='>'):
+    """Return image data from a raw PGM file as numpy array.
+
+    Format specification: http://netpbm.sourceforge.net/doc/pgm.html
+
+    """
+    import re
+    import numpy
+    if directory is not None:
+        import os.path
+        filename=os.path.join(directory, filename)
+    with open(filename, 'rb') as f:
+        buffer = f.read()
+    try:
+        header, width, height, maxval = re.search(
+            b"(^P5\s(?:\s*#.*[\r\n])*"
+            b"(\d+)\s(?:\s*#.*[\r\n])*"
+            b"(\d+)\s(?:\s*#.*[\r\n])*"
+            b"(\d+)\s(?:\s*#.*[\r\n]\s)*)", buffer).groups()
+    except AttributeError:
+        raise ValueError("Not a raw PGM file: '%s'" % filename)
+    return numpy.frombuffer(buffer,
+                            dtype='u1' if int(maxval) < 256 else byteorder+'u2',
+                            count=int(width)*int(height),
+                            offset=len(header)
+                            ).reshape((int(height), int(width)))
+
 ##########          Week 12          ##########
 class GP():
     def __init__(self, X, y, sigma2, kernel, **kwargs):
@@ -550,3 +582,4 @@ def exponentiated_quadratic(x, x_prime, variance, lengthscale):
     "Exponentiated quadratic covaraince function."
     squared_distance = ((x-x_prime)**2).sum()
     return variance*np.exp((-0.5*squared_distance)/lengthscale**2)        
+
