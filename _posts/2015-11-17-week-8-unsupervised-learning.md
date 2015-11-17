@@ -12,6 +12,7 @@ labclass: week8.ipynb
 reveal: w8_unsupervisedLearning.slides.html
 lecturenb: w8_unsupervisedLearning.ipynb
 lecturepdf: w8_unsupervisedLearning.pdf
+youtube: 0mtK2_rc0IY
 ---
 
 
