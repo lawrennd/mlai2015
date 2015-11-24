@@ -9,7 +9,8 @@ date: 2015-11-24 09:00
 time: "9:00"
 type: lecture
 labclass: week9.ipynb
-lecturepdf: w9_classification.pdf
+reveal: w9_naiveBayes.slides.html
+lecturenb: w9_naiveBayes.ipynb
 ---
 
 ### Reading
