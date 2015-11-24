@@ -299,7 +299,10 @@ div.output_prompt {
 
 </div>
 </div>
-</div>
+</div></section>
+    </section><section>
+    <section>
+    
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -327,7 +330,7 @@ div.output_prompt {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Reminder-on-the-Term-&quot;Bayesian&quot;">Reminder on the Term "Bayesian"<a class="anchor-link" href="#Reminder-on-the-Term-&quot;Bayesian&quot;">&#182;</a></h3><ul>
-<li>The use of Bayes rule does <em>not</em> imply you are being Bayesian.<ul>
+<li>The use of Bayes' rule does <em>not</em> imply you are being Bayesian.<ul>
 <li>It is just an application of the product rule of probability.</li>
 </ul>
 </li>
@@ -362,7 +365,7 @@ div.output_prompt {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Bernoulli-Distribution">Bernoulli Distribution<a class="anchor-link" href="#Bernoulli-Distribution">&#182;</a></h3><ul>
-<li>Binary cassification: need a probability distribution for discrete variables. </li>
+<li>Binary classification: need a probability distribution for discrete variables. </li>
 <li>Discrete probability is in some ways easier:  $P(y=1) = \pi$ &amp; specify distribution as a table.</li>
 </ul>
 <table>
@@ -404,11 +407,11 @@ This is the <a href="http://en.wikipedia.org/wiki/Bernoulli_distribution">Bernou
   $$
   P(y) = \pi^y (1-\pi)^{(1-y)}
   $$</li>
-<li>Is a clever trick for switching probabilities, as code it would be<div class="highlight"><pre><span class="k">def</span> <span class="nf">bernoulli</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pi</span><span class="p">):</span>
+<li>Is a clever trick for switching probabilities, as code it would be<div class="highlight"><pre><span class="k">def</span> <span class="nf">bernoulli</span><span class="p">(</span><span class="n">y_i</span><span class="p">,</span> <span class="n">pi</span><span class="p">):</span>
   <span class="k">if</span> <span class="n">y_i</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-      <span class="k">return</span> <span class="n">pi</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">pi</span>
   <span class="k">else</span><span class="p">:</span>
-      <span class="k">return</span> <span class="mi">1</span><span class="o">-</span><span class="n">pi</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+      <span class="k">return</span> <span class="mi">1</span><span class="o">-</span><span class="n">pi</span>
 </pre></div>
 </li>
 </ul>
