@@ -11,6 +11,7 @@ type: lecture
 labclass: week9.ipynb
 reveal: w9_naiveBayes.slides.html
 lecturenb: w9_naiveBayes.ipynb
+youtube: G7NbyCcuGmg
 ---
 
 ### Reading
