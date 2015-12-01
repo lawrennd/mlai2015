@@ -1,7 +1,7 @@
 ---
 layout: lecture
 title: Week 10
-tagline: Logistic Regression
+tagline: Logistic Regression and Generalized Linear Models
 venue: "SB LT-2"
 labvenue: Mappin F110
 labtime: "11:00"
