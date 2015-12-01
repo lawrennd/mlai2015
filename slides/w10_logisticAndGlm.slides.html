@@ -256,7 +256,7 @@ div.output_prompt {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Review">Review<a class="anchor-link" href="#Review">&#182;</a></h3><ul>
 <li>Last week: Specified Class Conditional Distributions, $p(\mathbf{x}_i|y_i, \boldsymbol{\theta})$.</li>
-<li>Used Bayes Classifier + naive Bayes model to specify joint distribtuion.</li>
+<li>Used Bayes Classifier + naive Bayes model to specify joint distribution.</li>
 <li>Used Bayes rule to compute posterior probability of class membership.</li>
 <li>This week: <ul>
 <li>direct estimation of probability of class membership.</li>
@@ -341,11 +341,11 @@ div.output_prompt {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Inverse-Link-Function">Inverse Link Function<a class="anchor-link" href="#Inverse-Link-Function">&#182;</a></h3><p>We have defined the link function as taking the form $g^{-1}(\cdot)$ implying that the inverse link function is given by $g(\cdot)$. Since we have defined,
 $$
-g^{-1}(\pi) = \mathbf{w}^\top \boldsymbol{\phi}(\mathbf{x})
+g^{-1}(\pi(\mathbf{x})) = \mathbf{w}^\top \boldsymbol{\phi}(\mathbf{x})
 $$
 we can write $\pi$ in terms of the <em>inverse link</em> function, $g(\cdot)$ as 
 $$
-\pi = g(\mathbf{w}^\top \boldsymbol{\phi}(\mathbf{x})).
+\pi(\mathbf{x}) = g(\mathbf{w}^\top \boldsymbol{\phi}(\mathbf{x})).
 $$</p>
 
 </div>
@@ -575,7 +575,7 @@ and the gradient can be computed as
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Ad-Matching-for-Facebook">Ad Matching for Facebook<a class="anchor-link" href="#Ad-Matching-for-Facebook">&#182;</a></h3><ul>
-<li><p>This approach used in many interent companies.</p>
+<li><p>This approach used in many internet companies.</p>
 </li>
 <li><p>Example: ad matching for Facebook.</p>
 <ul>
