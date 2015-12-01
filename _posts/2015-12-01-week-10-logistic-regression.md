@@ -11,6 +11,7 @@ type: lecture
 reveal: w10_logisticAndGlm.slides.html
 lecturenb: w10_logisticAndGlm.ipynb
 labclass: week10.ipynb
+youtube: e-BWWidfbT4
 ---
 
 ### Reading
