@@ -382,8 +382,10 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This inverse of the link function is known as the <a href="http://en.wikipedia.org/wiki/Logistic_function">logistic</a> (thus the name logistic regression) or sometimes it is called the sigmoid function. For a particular value of the input to the link function, $f_i = \mathbf{w}^\top \boldsymbol{\phi}(\mathbf{x}_i)$ we can plot the value of the link function as below.
-<img src="./diagrams/logistic.svg" alt=""></p>
+<h3 id="Logistic-function">Logistic function<a class="anchor-link" href="#Logistic-function">&#182;</a></h3><ul>
+<li><a href="http://en.wikipedia.org/wiki/Logistic_function">Logistic</a> (or sigmoid) squashes real line to between 0   &amp; 1. Sometimes also called a 'squashing function'. 
+<img src="./diagrams/logistic.svg" alt=""></li>
+</ul>
 
 </div>
 </div>
@@ -396,9 +398,7 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Sigmoid-Function">Sigmoid Function<a class="anchor-link" href="#Sigmoid-Function">&#182;</a></h3><ul>
-<li><p>Logistic takes input from the entire real line and 'squashes' it between 0 and 1 it is sometimes also called a 'squashing function'.</p>
-</li>
+<h3 id="Prediction-Function">Prediction Function<a class="anchor-link" href="#Prediction-Function">&#182;</a></h3><ul>
 <li><p>Can now write $\pi$ as a function of the input and the parameter vector as, $$\pi(\mathbf{x},\mathbf{w}) = \frac{1}{1+ \exp\left(-\mathbf{w}^\top \boldsymbol{\phi}(\mathbf{x})\right)}.$$</p>
 </li>
 <li><p>Compute the output of a standard linear basis function composition ($\mathbf{w}^\top \boldsymbol{\phi}(\mathbf{x})$, as we did for linear regression)</p>
