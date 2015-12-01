@@ -8,14 +8,12 @@ labtime: "11:00"
 date: 2015-12-01 09:00
 time: "9:00"
 type: lecture
+reveal: w10_logisticAndGlm.slides.html
+lecturenb: w10_logisticAndGlm.ipynb
 labclass: week10.ipynb
 ---
 
 ### Reading
 
--   Section 3.7--3.8 of Rogers and Girolami (pg 122--133).
--   Section 3.4 of Bishop (pg 161--165).
--   Chapters 1 and 2 of [Gaussian Processes for Machine
-    Learning](http://www.gaussianprocess.org/gpml/chapters/) by
-    Rasmussen and Williams
+-   Section 5.2.2 of Rogers and Girolami (pg 179--182).
 
