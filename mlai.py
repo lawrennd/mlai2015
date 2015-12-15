@@ -476,7 +476,7 @@ class BLM(ProbMapModel):
         """Compute the sum of squares error."""
         self.update_f()
         self.sum_squares = ((self.y-self.f_bar)**2).sum()
-        
+    
     def objective(self):
         """Compute the objective function."""
         self.update_sum_squares()
@@ -519,6 +519,73 @@ def load_pgm(filename, directory=None, byteorder='>'):
                             offset=len(header)
                             ).reshape((int(height), int(width)))
 
+##########          Week 10          ##########
+
+class LR(ProbMapModel):
+    """Logistic regression
+    :param X: input values
+    :type X: numpy.ndarray
+    :param y: target values
+    :type y: numpy.ndarray
+    :param alpha: Scale of prior on parameters
+    :type alpha: float
+    :param sigma2: Noise variance
+    :type sigma2: float
+    :param basis: basis function 
+    :param type: function"""
+
+    def __init__(self, X, y, basis, num_basis, **kwargs):
+        ProbMapModel.__init__(self, X, y)
+        self.basis = basis
+        self.num_basis = num_basis
+        self.basis_args = kwargs
+        self.Phi = basis(X, num_basis=num_basis, **kwargs)
+        self.w_star = np.zeros(num_basis)
+        
+    def predict(self, x, **kwargs):
+        "Generates the prediction function and the basis matrix."
+        Phi = self.basis(x, **kwargs)
+        f = np.dot(Phi, self.w_star)
+        return 1./(1+np.exp(-f)), Phi
+
+    def gradient(self):
+        "Generates the gradient of the parameter vector."
+        self.update_g()
+        dw = -(self.Phi[self.y.values, :]*(1-self.g[self.y.values, :])).sum(0)
+        dw += (Phi[~self.y.values, :]*self.g[~self.y.values, :]).sum(0)
+        return dw[:, None]
+
+    def compute_g(self, f):
+        "Compute the transformation and its logarithms."
+        eps = 1e-16
+        g = 1./(1+np.exp(f))
+        log_g = np.zeros((f.shape))
+        log_gminus = np.zeros((f.shape))
+        
+        # compute log_g for values out of bound
+        bound = np.log(eps)
+        ind = f<-bound
+        
+        log_g[ind] = -f[ind]
+        log_gminus[ind] = eps
+        ind = f>bound
+        log_g[ind] = eps
+        log_gminus[ind] = f[ind]
+        ind = (f>=-bound & f<=bound)
+        log_g[ind] = np.log(self.g[ind])
+        log_gminus[ind] = np.log(1-self.g[ind])
+        return g, log_g, log_gminus
+        
+    def update_g(self):
+        "Computes the prediction function on training data."
+        self.f = np.dot(self.Phi, self.w_star)
+        self.g, self.log_g, self.log_gminus = self.compute_g(self.f)
+        
+    def objective(self):
+        "Computes the objective function."
+        self.update_g()
+        return self.log_g[self.y.values, :].sum() + np.log_gminus[~self.y.values, :].sum()
+    
 ##########          Week 12          ##########
 class GP():
     def __init__(self, X, y, sigma2, kernel, **kwargs):
@@ -578,8 +645,8 @@ def compute_kernel(X, X2, kernel, **kwargs):
         
     return K
     
-def exponentiated_quadratic(x, x_prime, variance, lengthscale):
-    "Exponentiated quadratic covaraince function."
+def exponentiated_quadratic(x, x_prime, variance=1., lengthscale=1.):
+    "Exponentiated quadratic covariance function."
     squared_distance = ((x-x_prime)**2).sum()
     return variance*np.exp((-0.5*squared_distance)/lengthscale**2)        
 
