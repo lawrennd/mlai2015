@@ -8,6 +8,7 @@ labtime: "11:00"
 date: 2015-12-15 09:00
 time: "9:00"
 labclass: week12.ipynb
+youtube: B2XhFoCehy8
 lecturepdf: w12_gaussianProcesses.pdf
 ---
 
