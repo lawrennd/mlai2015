@@ -21,7 +21,7 @@ def hyperplane_coordinates(w, b, plot_limits):
         x0 = -(b + x1*w[1])/w[0]
     return x0, x1
 
-def init_perceptron_plot(f, ax, x_plus, x_minus, w, b, x_select):
+def init_perceptron_plot(f, ax, x_plus, x_minus, w, b, fontsize=18):
     """Initialise a plot for showing the perceptron decision boundary."""
 
     h = {}
@@ -36,7 +36,10 @@ def init_perceptron_plot(f, ax, x_plus, x_minus, w, b, x_select):
     x0, x1 = hyperplane_coordinates(w, b, plot_limits)
     strt = -b/w[1]
 
-    h['arrow'] = ax[0].arrow(0, strt, w[0], w[1]+strt, head_width=0.2)
+    norm = w[0]*w[0] + w[1]*w[1]
+    offset0 = -w[0]/norm*b
+    offset1 = -w[1]/norm*b
+    h['arrow'] = ax[0].arrow(offset0, offset1, offset0+w[0], offset1+w[1], head_width=0.2)
     # plot a line to represent the separating 'hyperplane'
     h['plane'], = ax[0].plot(x0, x1, 'b-')
     ax[0].set_xlim(plot_limits['x'])
@@ -44,9 +47,7 @@ def init_perceptron_plot(f, ax, x_plus, x_minus, w, b, x_select):
     ax[0].set_xlabel('$x_0$', fontsize=fontsize)
     ax[0].set_ylabel('$x_1$', fontsize=fontsize)
     h['iter'] = ax[0].set_title('Update 0')
-
-    h['select'], = ax[0].plot(x_select[0], x_select[1], 'ro', markersize=10)
-
+    
     bins = 15
     f_minus = np.dot(x_minus, w)
     f_plus = np.dot(x_plus, w)
@@ -55,20 +56,22 @@ def init_perceptron_plot(f, ax, x_plus, x_minus, w, b, x_select):
     ax[1].legend(loc='upper right')
     return h
 
-def update_perceptron_plot(h, f, ax, x_plus, x_minus, i, w, b, x_select):
+def update_perceptron_plot(h, f, ax, x_plus, x_minus, i, w, b):
     """Update plots after decision boundary has changed."""
     # Helper function for updating plots
-    h['select'].set_xdata(x_select[0])
-    h['select'].set_ydata(x_select[1])
     # Re-plot the hyper plane 
     plot_limits = {}
     plot_limits['x'] = np.asarray(ax[0].get_xlim())
     plot_limits['y'] = np.asarray(ax[0].get_ylim())
     x0, x1 = hyperplane_coordinates(w, b, plot_limits)
-    strt = -b/w[1]
+
+    # Add arrow to represent hyperplane.
     h['arrow'].remove()
     del(h['arrow'])
-    h['arrow'] = ax[0].arrow(0, strt, w[0], w[1]+strt, head_width=0.2)
+    norm = (w[0]*w[0] + w[1]*w[1])
+    offset0 = -w[0]/norm*b
+    offset1 = -w[1]/norm*b
+    h['arrow'] = ax[0].arrow(offset0, offset1, offset0+w[0], offset1+w[1], head_width=0.2)
     
     h['plane'].set_xdata(x0)
     h['plane'].set_ydata(x1)
