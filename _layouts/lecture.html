@@ -5,11 +5,11 @@ layout: post
 
   <article class="post-content">
     {% if page.youtube %}
-    <iframe width="{{ site.youtube.width }}" height="{{ site.youtube.height }}" src="https://www.youtube.com/embed/{{ page.youtube }}" frameborder="0" allowfullscreen></iframe>
+    <iframe width="{{ site.video.width }}" height="{{ site.video.height }}" src="https://www.youtube.com/embed/{{ page.youtube }}" frameborder="0" allowfullscreen></iframe>
     {% endif %}
 
     {% if page.reveal %}
-    <iframe width="{{ site.youtube.width }}" height="{{ site.youtube.height }}" src="{{ site.url }}{{ site.baseurl }}/slides/{{ page.reveal }}" frameborder="0" allowfullscreen></iframe>
+    <iframe width="{{ site.reveal.width }}" height="{{ site.reveal.height }}" src="{{ site.url }}{{ site.baseurl }}/slides/{{ page.reveal }}" frameborder="0" allowfullscreen></iframe>
     {% endif %}
     
     <p><b>{{ page.tagline }}</b> {%if page.lecturepdf %}[<a href="{{ site.url }}{{ site.baseurl }}/assets/{{ page.lecturepdf }}">PDF Lecture slides</a>]{% endif %}{%if page.lecturenb %}[<a href="{{ site.nbviewer }}/slides/{{ page.lecturenb }}">Jupyter Lecture slides</a>]{% endif %}
