@@ -1,0 +1,1 @@
+Allocate each data point to the nearest cluster centre.

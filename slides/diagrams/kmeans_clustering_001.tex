@@ -1,0 +1,1 @@
+Allocate each point to the cluster with the nearest centre

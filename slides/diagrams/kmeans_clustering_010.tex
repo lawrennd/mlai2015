@@ -1,0 +1,1 @@
+Update each centre by setting to the mean of the allocated points.
