@@ -7,12 +7,12 @@ baseurl: "/mlai2015" # the subpath of your site, e.g. /blog/
 url: "http://inverseprobability.com/" # the base hostname & protocol for your site
 
 video:
-- width: 800
-- height: 600
+  width: 800
+  height: 600
 
 reveal:
-- width: 800
-- height: 600
+  width: 800
+  height: 600
 
 gitraw: "https://raw.githubusercontent.com/lawrennd/mlai2015/master"
 nbviewer: "http://nbviewer.ipython.org/github/lawrennd/mlai2015/blob/master"
