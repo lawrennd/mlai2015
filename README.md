@@ -1,4 +1,3 @@
-
 # Machine Learning and Adaptive Intelligence 
 
 ## Neil D. Lawrence
@@ -22,6 +21,10 @@ The lecture notes will all be given in the form of Jupyter Notebooks and are ava
 * Week 11 Reading Week
 * [Week 12](./week12.ipynb) Special Topic: Gaussian Processes
 
+
+## ToDo
+
+There are some refinements to the notebook slides required. Particularly for Week 8 (unsupervised learning) 9 and 10. 
 
 
 
