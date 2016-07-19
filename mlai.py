@@ -642,16 +642,74 @@ def update_inverse(self):
     self.Rinv = sp.linalg.solve_triangular(self.R, np.eye(self.K.shape[0]))
     self.Kinv = np.dot(self.Rinv, self.Rinv.T)
     
-def compute_kernel(X, X2, kernel, **kwargs):
+def compute_kernel(X, X2=None, kernel=None, **kwargs):
+    """Compute the full covariance function given a kernel function for two data points."""
+    if X is None:
+        X2 = X
     K = np.zeros((X.shape[0], X2.shape[0]))
     for i in np.arange(X.shape[0]):
         for j in np.arange(X2.shape[0]):
+            
             K[i, j] = kernel(X[i, :], X2[j, :], **kwargs)
         
     return K
     
 def exponentiated_quadratic(x, x_prime, variance=1., lengthscale=1.):
     "Exponentiated quadratic covariance function."
-    squared_distance = ((x-x_prime)**2).sum()
-    return variance*np.exp((-0.5*squared_distance)/lengthscale**2)        
+    r = np.linalg.norm(x-x_prime, 2)
+    return variance*np.exp((-0.5*r*r)/lengthscale**2)        
 
+def polynomial_cov(x, x_prime, variance=1., degree=2., w=1., b=1.):
+    "Polynomial covariance function."
+    return variance*(np.dot(x, x_prime)*w + b)**degree
+
+def linear_cov(x, x_prime, variance=1.):
+    "Linear covariance function."
+    return variance*np.dot(x, x_prime)
+
+def bias_cov(x, x_prime, variance=1.):
+    "Bias covariance function."
+    return variance
+
+def mlp_cov(x, x_prime, variance=1., w=1., b=1.):
+    "MLP covariance function."
+    return variance*np.arcsin((w*np.dot(x, x_prime) + b)/np.sqrt((np.dot(x, x)*w +b + 1)*(np.dot(x_prime, x_prime)*w + b + 1)))
+
+def sinc_cov(x, x_prime, variance=1., w=1.):
+    "Sinc covariance function."
+    r = np.linalg.norm(x-x_prime, 2)
+    return variance*np.sinc(np.pi*w*r)
+
+def ou_cov(x, x_prime, variance=1., lengthscale=1.):
+    "Ornstein Uhlenbeck covariance function."
+    r = np.linalg.norm(x-x_prime, 2)
+    return variance*np.exp(-r/lengthscale)        
+
+def brownian_cov(t, t_prime, variance=1.):
+    "Brownian motion covariance function."
+    if t>=0 and t_prime>=0:
+        return variance*np.min([t, t_prime])
+    else:
+        raise ValueError("For Brownian motion covariance only positive times are valid.")
+
+def periodic_cov(x, x_prime, variance=1., lengthscale=1., w=1.):
+    "Periodic covariance function"
+    r = np.linalg.norm(x-x_prime, 2)
+    return variance*np.exp(-2./(lengthscale*lengthscale)*np.sin(np.pi*r*w)**2)
+
+def ratquad_cov(x, x_prime, variance=1., lengthscale=1., alpha=1.):
+    "Rational quadratic covariance function"
+    r = np.linalg.norm(x-x_prime, 2)
+    return variance*(1. + r*r/(2*alpha*lengthscale*lengthscale))**-alpha
+
+def prod_cov(x, x_prime, kerns, kwargs):
+    "Product covariance function."
+    k = 1.
+    for kern, kwarg in zip(kerns, kwargs):
+        k*=kern(x, x_prime, **kwarg)
+
+def add_cov(x, x_prime, kerns, kwargs):
+    "Additive covariance function."
+    k = 0.
+    for kern, kwarg in zip(kerns, kwargs):
+        k+=kern(x, x_prime, **kwarg)
