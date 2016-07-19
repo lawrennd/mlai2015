@@ -49,51 +49,49 @@ z
    </g>
    <g id="line2d_2">
     <path clip-path="url(#p41d7ee9abc)" d="
-M63 337.467
-L399.846 -1" style="fill:none;stroke:#0000ff;stroke-linecap:square;stroke-width:2;"/>
+M63 345.435
+L387.981 -1" style="fill:none;stroke:#0000ff;stroke-linecap:square;stroke-width:2;"/>
    </g>
    <g id="line2d_3">
     <path clip-path="url(#p41d7ee9abc)" d="
-M63 93.8644
-L453.6 432.191" style="fill:none;stroke:#0000ff;stroke-linecap:square;stroke-width:2;"/>
+M63 337.019
+L400.555 -1" style="fill:none;stroke:#0000ff;stroke-linecap:square;stroke-width:2;"/>
    </g>
    <g id="line2d_4">
     <path clip-path="url(#p41d7ee9abc)" d="
-M63 557.282
-M82.4133 505
-L270.301 -1" style="fill:none;stroke:#0000ff;stroke-linecap:square;stroke-width:2;"/>
+M63 389.37
+L341.149 -1" style="fill:none;stroke:#0000ff;stroke-linecap:square;stroke-width:2;"/>
    </g>
    <g id="line2d_5">
     <path clip-path="url(#p41d7ee9abc)" d="
-M63 611.002
-M97.1315 505
-L260.058 -1" style="fill:none;stroke:#0000ff;stroke-linecap:square;stroke-width:2;"/>
+M63 398.036
+L334.45 -1" style="fill:none;stroke:#0000ff;stroke-linecap:square;stroke-width:2;"/>
    </g>
    <g id="line2d_6">
     <path clip-path="url(#p41d7ee9abc)" d="
-M63 569.801
-M86.2324 505
-L267.643 -1" style="fill:none;stroke:#0000ff;stroke-linecap:square;stroke-width:2;"/>
+M63 512.229
+M66.0801 505
+L281.668 -1" style="fill:none;stroke:#0000ff;stroke-linecap:square;stroke-width:2;"/>
    </g>
    <g id="patch_3">
-    <path d="
-M453.6 441
-L453.6 50.4" style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;"/>
-   </g>
-   <g id="patch_4">
     <path d="
 M63 441
 L63 50.4" style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;"/>
    </g>
-   <g id="patch_5">
-    <path d="
-M63 441
-L453.6 441" style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;"/>
-   </g>
-   <g id="patch_6">
+   <g id="patch_4">
     <path d="
 M63 50.4
 L453.6 50.4" style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;"/>
+   </g>
+   <g id="patch_5">
+    <path d="
+M453.6 441
+L453.6 50.4" style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;"/>
+   </g>
+   <g id="patch_6">
+    <path d="
+M63 441
+L453.6 441" style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;"/>
    </g>
    <g id="matplotlib.axis_1">
     <g id="xtick_1">

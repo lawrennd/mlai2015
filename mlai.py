@@ -8,127 +8,50 @@ import matplotlib.pyplot as plt
 from IPython.display import display, clear_output, HTML
 
 
-##########          Week 1          ##########
-def hyperplane_coordinates(w, b, plot_limits):
-    """Helper function for plotting the decision boundary of the perceptron."""
-    if abs(w[1])>abs(w[0]):
-        # If w[1]>w[0] in absolute value, plane is likely to be leaving tops of plot.
-        x0 = plot_limits['x']
-        x1 = -(b + x0*w[0])/w[1]
+##########          Week 2          ##########
+def init_perceptron(x_plus, x_minus, seed=1000001):
+    np.random.seed(seed=seed)
+    # flip a coin (i.e. generate a random number and check if it is greater than 0.5)
+    choose_plus = np.random.rand(1)>0.5
+    if choose_plus:
+        # generate a random point from the positives
+        index = np.random.randint(0, x_plus.shape[1])
+        x_select = x_plus[index, :]
+        w = x_plus[index, :] # set the normal vector to that point.
+        b = 1
     else:
-        # otherwise plane is likely to be leaving sides of plot.
-        x1 = plot_limits['y']
-        x0 = -(b + x1*w[1])/w[0]
-    return x0, x1
+        # generate a random point from the negatives
+        index = np.random.randint(0, x_minus.shape[1])
+        x_select = x_minus[index, :]
+        w = -x_minus[index, :] # set the normal vector to minus that point.
+        b = -1
+    return w, b, x_select
 
-def init_perceptron_plot(f, ax, x_plus, x_minus, w, b, fontsize=18):
-    """Initialise a plot for showing the perceptron decision boundary."""
 
-    h = {}
-
-    ax[0].set_aspect('equal')
-    # Plot the data again
-    ax[0].plot(x_plus[:, 0], x_plus[:, 1], 'rx')
-    ax[0].plot(x_minus[:, 0], x_minus[:, 1], 'go')
-    plot_limits = {}
-    plot_limits['x'] = np.asarray(ax[0].get_xlim())
-    plot_limits['y'] = np.asarray(ax[0].get_ylim())
-    x0, x1 = hyperplane_coordinates(w, b, plot_limits)
-    strt = -b/w[1]
-
-    norm = w[0]*w[0] + w[1]*w[1]
-    offset0 = -w[0]/norm*b
-    offset1 = -w[1]/norm*b
-    h['arrow'] = ax[0].arrow(offset0, offset1, offset0+w[0], offset1+w[1], head_width=0.2)
-    # plot a line to represent the separating 'hyperplane'
-    h['plane'], = ax[0].plot(x0, x1, 'b-')
-    ax[0].set_xlim(plot_limits['x'])
-    ax[0].set_ylim(plot_limits['y'])
-    ax[0].set_xlabel('$x_0$', fontsize=fontsize)
-    ax[0].set_ylabel('$x_1$', fontsize=fontsize)
-    h['iter'] = ax[0].set_title('Update 0')
-    
-    bins = 15
-    f_minus = np.dot(x_minus, w)
-    f_plus = np.dot(x_plus, w)
-    ax[1].hist(f_plus, bins, alpha=0.5, label='+1', color='r')
-    ax[1].hist(f_minus, bins, alpha=0.5, label='-1', color='g')
-    ax[1].legend(loc='upper right')
-    return h
-
-def update_perceptron_plot(h, f, ax, x_plus, x_minus, i, w, b):
-    """Update plots after decision boundary has changed."""
-    # Helper function for updating plots
-    # Re-plot the hyper plane 
-    plot_limits = {}
-    plot_limits['x'] = np.asarray(ax[0].get_xlim())
-    plot_limits['y'] = np.asarray(ax[0].get_ylim())
-    x0, x1 = hyperplane_coordinates(w, b, plot_limits)
-
-    # Add arrow to represent hyperplane.
-    h['arrow'].remove()
-    del(h['arrow'])
-    norm = (w[0]*w[0] + w[1]*w[1])
-    offset0 = -w[0]/norm*b
-    offset1 = -w[1]/norm*b
-    h['arrow'] = ax[0].arrow(offset0, offset1, offset0+w[0], offset1+w[1], head_width=0.2)
-    
-    h['plane'].set_xdata(x0)
-    h['plane'].set_ydata(x1)
-
-    h['iter'].set_text('Update ' + str(i))
-    ax[1].cla()
-    bins = 15
-    f_minus = np.dot(x_minus, w)
-    f_plus = np.dot(x_plus, w)
-    ax[1].hist(f_plus, bins, alpha=0.5, label='+1', color='r')
-    ax[1].hist(f_minus, bins, alpha=0.5, label='-1', color='g')
-    ax[1].legend(loc='upper right')
-
-    display(f)
-    clear_output(wait=True)
-    if i<3:
-        time.sleep(0.5)
+def update_perceptron(w, b, x_plus, x_minus, learn_rate):
+    "Update the perceptron."
+    # select a point at random from the data
+    choose_plus = np.random.uniform(size=1)>0.5
+    updated=False
+    if choose_plus:
+        # choose a point from the positive data
+        index = np.random.randint(x_plus.shape[0])
+        x_select = x_plus[index, :]
+        if np.dot(w, x_select)+b <= 0.:
+            # point is currently incorrectly classified
+            w += learn_rate*x_select
+            b += learn_rate
+            updated=True
     else:
-        time.sleep(.25)   
-    return h
-
-def init_regression_plot(f, ax, x, y, m_vals, c_vals, E_grid, m_star, c_star, fontsize=20):
-    """Function to plot the initial regression fit and the error surface."""
-    h = {}
-    levels=[0, 0.5, 1, 2, 4, 8, 16, 32, 64]
-    h['cont'] = ax[0].contour(m_vals, c_vals, E_grid, levels=levels) # this makes the contour plot on axes 0.
-    plt.clabel(h['cont'], inline=1, fontsize=15)
-    ax[0].set_xlabel('$m$', fontsize=fontsize)
-    ax[0].set_ylabel('$c$', fontsize=fontsize)
-    h['msg'] = ax[0].set_title('Error Function', fontsize=fontsize)
-
-    # Set up plot
-    h['data'], = ax[1].plot(x, y, 'r.', markersize=10)
-    ax[1].set_xlabel('$x$', fontsize=fontsize)
-    ax[1].set_ylabel('$y$', fontsize=fontsize)
-    ax[1].set_ylim((-9, -1)) # set the y limits of the plot fixed
-    ax[1].set_title('Best Fit', fontsize=fontsize)
-
-    # Plot the current estimate of the best fit line
-    x_plot = np.asarray(ax[1].get_xlim()) # get the x limits of the plot for plotting the current best line fit.
-    y_plot = m_star*x_plot + c_star
-    h['fit'], = ax[1].plot(x_plot, y_plot, 'b-', linewidth=3)
-    return h
-
-def update_regression_plot(h, f, ax, m_star, c_star, iteration):
-    """Update the regression plot with the latest fit and position in error space."""
-    ax[0].plot(m_star, c_star, 'g*')
-    x_plot = np.asarray(ax[1].get_xlim()) # get the x limits of the plot for plo
-    y_plot = m_star*x_plot + c_star
-    
-    # show the current status on the plot of the data
-    h['fit'].set_ydata(y_plot)
-    h['msg'].set_text('Iteration '+str(iteration))
-    display(f)
-    clear_output(wait=True)
-    time.sleep(0.25) # pause between iterations to see update
-    return h
+        # choose a point from the negative data
+        index = np.random.randint(x_minus.shape[0])
+        x_select = x_minus[index, :]
+        if np.dot(w, x_select)+b > 0.:
+            # point is currently incorrectly classified
+            w -= learn_rate*x_select
+            b -= learn_rate
+            updated=True
+    return w, b, x_select, updated
 
 ##########           Weeks 4 and 5           ##########
 class Model(object):
@@ -243,6 +166,7 @@ def radial(x, num_basis=4, data_limits=[-1., 1.], width=None):
         Phi[:, i:i+1] = np.exp(-0.5*((x-centres[i])/width)**2)
     return Phi
 
+
 def fourier(x, num_basis=4, data_limits=[-1., 1.], frequency=None):
     "Fourier basis"
     tau = 2*np.pi
@@ -323,49 +247,6 @@ def plot_basis(basis, x_min, x_max, fig, ax, loc, text, directory='./diagrams', 
 
 
     
-def plot_marathon_fit(model, data_limits, fig, ax, x_val=None, y_val=None, objective=None, directory='./diagrams', fontsize=20, objective_ylim=None, prefix='olympic', title=None, png_plot=False):
-    "Plot fit of the marathon data alongside error."
-    ax[0].cla()
-    ax[0].plot(model.X, model.y, 'o', color=[1, 0, 0], markersize=6, linewidth=3)
-    if x_val is not None and y_val is not None:
-        ax[0].plot(x_val, y_val, 'o', color=[0, 1, 0], markersize=6, linewidth=3)
-        
-    ylim = ax[0].get_ylim()
-
-    x_pred = np.linspace(data_limits[0], data_limits[1], 130)[:, None]
-    y_pred, y_var = model.predict(x_pred)
-    
-    ax[0].plot(x_pred, y_pred, color=[0, 0, 1], linewidth=2)
-    if y_var is not None:
-        y_err = np.sqrt(y_var)*2
-        ax[0].plot(x_pred, y_pred + y_err, '--', color=[0, 0, 1], linewidth=1)
-        ax[0].plot(x_pred, y_pred - y_err, '--', color=[0, 0, 1], linewidth=1)
-        
-    ax[0].set_xlabel('year', fontsize=fontsize)
-    ax[0].set_ylim(ylim)
-    plt.sca(ax[0])
-
-    xlim = ax[0].get_xlim()
-
-    if objective is not None:
-        max_basis = len(objective)
-        if objective is not None:
-            ax[1].set_ylim(objective_ylim)
-        if model.basis.__name__ == 'polynomial':
-            ax[1].set_xlabel('polynomial order', fontsize=fontsize)
-            ax[1].set_xlim([-1, max_basis])
-            basis_vals = range(max_basis)
-        else:
-            ax[1].set_xlabel('number of basis', fontsize=fontsize)
-            basis_vals = range(1, max_basis+1)
-        ax[1].plot(basis_vals, objective, 'o', color=[1, 0, 0], markersize=6, linewidth=3)
-        if title is not None:
-            ax[1].set_title(title, fontsize=fontsize)
-            
-    filename = '{prefix}_{name}_{basis}{num_basis:0>3}'.format(prefix=prefix, name=model.__class__.__name__, basis=model.basis.__name__, num_basis=model.num_basis)
-    plt.savefig(directory + '/' +filename + '.svg')
-    if png_plot:
-        plt.savefig(directory + '/' +filename + '.png')
 
 ##########          Week 6           ##########
 
@@ -644,7 +525,7 @@ def update_inverse(self):
     
 def compute_kernel(X, X2=None, kernel=None, **kwargs):
     """Compute the full covariance function given a kernel function for two data points."""
-    if X is None:
+    if X2 is None:
         X2 = X
     K = np.zeros((X.shape[0], X2.shape[0]))
     for i in np.arange(X.shape[0]):
@@ -702,14 +583,20 @@ def ratquad_cov(x, x_prime, variance=1., lengthscale=1., alpha=1.):
     r = np.linalg.norm(x-x_prime, 2)
     return variance*(1. + r*r/(2*alpha*lengthscale*lengthscale))**-alpha
 
-def prod_cov(x, x_prime, kerns, kwargs):
+def prod_cov(x, x_prime, kerns, kern_args):
     "Product covariance function."
     k = 1.
-    for kern, kwarg in zip(kerns, kwargs):
-        k*=kern(x, x_prime, **kwarg)
-
-def add_cov(x, x_prime, kerns, kwargs):
+    for kern, kern_arg in zip(kerns, kern_args):
+        k*=kern(x, x_prime, **kern_arg)
+    return k
+        
+def add_cov(x, x_prime, kerns, kern_args):
     "Additive covariance function."
     k = 0.
-    for kern, kwarg in zip(kerns, kwargs):
-        k+=kern(x, x_prime, **kwarg)
+    for kern, kern_arg in zip(kerns, kern_args):
+        k+=kern(x, x_prime, **kern_arg)
+    return k
+
+def basis_cov(x, x_prime, basis, **kwargs):
+    "Basis function covariance."
+    return (basis(x, **kwargs)*basis(x_prime, **kwargs)).sum()
