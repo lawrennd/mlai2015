@@ -477,7 +477,7 @@ class LR(ProbMapModel):
         return self.log_g[self.y.values, :].sum() + np.log_gminus[~self.y.values, :].sum()
     
 ##########          Week 12          ##########
-class GP():
+class GP(ProbMapModel):
     def __init__(self, X, y, sigma2, kernel, **kwargs):
         self.K = compute_kernel(X, X, kernel, **kwargs)
         self.X = X
@@ -499,7 +499,9 @@ class GP():
         self.Kinvy = np.dot(self.Kinv, self.y)
         self.yKinvy = (self.y*self.Kinvy).sum()
 
-        
+    def fit(self):
+        pass
+    
     def log_likelihood(self):
         # use the pre-computes to return the likelihood
         return -0.5*(self.K.shape[0]*np.log(2*np.pi) + self.logdetK + self.yKinvy)
@@ -508,11 +510,20 @@ class GP():
         # use the pre-computes to return the objective function 
         return -self.log_likelihood()
 
-
+    def predict(self, X_test, full_cov=False):
+        # Give a mean and a variance of the prediction.
+        K_star = compute_kernel(self.X, X_test, self.kernel, **self.kernel_args)
+        A = np.dot(self.Kinv, K_star)
+        mu_f = np.dot(A.T, self.y)
+        k_starstar = compute_diag(X_test, self.kernel, **self.kernel_args)
+        c_f = k_starstar - (A*K_star).sum(0)[:, None]
+        return mu_f, c_f
+        
 def posterior_f(self, X_test):
     K_star = compute_kernel(self.X, X_test, self.kernel, **self.kernel_args)
     A = np.dot(self.Kinv, K_star)
-    mu_f = np.dot(A.T, y)
+    mu_f = np.dot(A.T, self.y)
+    K_starstar = compute_kernel(X_test, X_test, self.kernel, **self.kernel_args)
     C_f = K_starstar - np.dot(A.T, K_star)
     return mu_f, C_f
 
@@ -540,7 +551,14 @@ def compute_kernel(X, X2=None, kernel=None, **kwargs):
             K[i, j] = kernel(X[i, :], X2[j, :], **kwargs)
         
     return K
-    
+
+def compute_diag(X, kernel=None, **kwargs):
+    """Compute the full covariance function given a kernel function for two data points."""
+    diagK = np.zeros((X.shape[0], 1))
+    for i in range(X.shape[0]):            
+        diagK[i] = kernel(X[i, :], X[i, :], **kwargs)
+    return diagK
+
 def exponentiated_quadratic(x, x_prime, variance=1., lengthscale=1.):
     "Exponentiated quadratic covariance function."
     r = np.linalg.norm(x-x_prime, 2)
