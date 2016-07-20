@@ -103,6 +103,8 @@ class LM(ProbMapModel):
         self.num_basis = num_basis
         self.basis_args = kwargs
         self.Phi = basis(X, num_basis=num_basis, **kwargs)
+        self.name = 'LM_'+basis.__name__
+        self.objective_name = 'Sum of Square Training Error'
 
     def update_QR(self):
         "Perform the QR decomposition on the basis matrix."
@@ -246,9 +248,10 @@ def plot_basis(basis, x_min, x_max, fig, ax, loc, text, directory='./diagrams', 
     plt.savefig(directory + '/' + basis.__name__ + '_function003.svg')
 
 
-    
+#################### Session 5 ####################
 
-##########          Week 6           ##########
+#################### Session 6 ####################
+
 
 class Noise(ProbModel):
     """Noise model"""
@@ -328,6 +331,8 @@ class BLM(ProbMapModel):
         self.num_basis = num_basis
         self.basis_args = kwargs
         self.Phi = basis(X, num_basis=num_basis, **kwargs)
+        self.name = 'BLM_'+basis.__name__
+        self.objective_name = 'Negative Marginal Likelihood'
         
     def update_QR(self):
         "Perform the QR decomposition on the basis matrix."
@@ -365,8 +370,7 @@ class BLM(ProbMapModel):
     
     def objective(self):
         """Compute the objective function."""
-        self.update_sum_squares()
-        return self.sum_squares
+        return - self.log_likelihood()
 
     def log_likelihood(self):
         """Compute the log likelihood."""
@@ -482,7 +486,9 @@ class GP():
         self.kernel = kernel
         self.kernel_args = kwargs
         self.update_inverse()
-    
+        self.name = 'GP_'+kernel.__name__
+        self.objective_name = 'Negative Marginal Likelihood'
+
     def update_inverse(self):
         # Preompute the inverse covariance and some quantities of interest
         ## NOTE: This is not the correct *numerical* way to compute this! It is for ease of use.
