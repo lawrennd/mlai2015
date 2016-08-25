@@ -58,9 +58,6 @@ class Model(object):
     def __init__(self):
         pass
     
-    def predict(self, X):
-        raise NotImplementedError
-
     def objective(self):
         raise NotImplementedError
 
@@ -71,17 +68,37 @@ class ProbModel(Model):
     def __init__(self):
         Model.__init__(self)
 
+    def objective(self):
+        return -self.log_likelihood()
+
     def log_likelihood(self):
         raise NotImplementedError
 
-class ProbMapModel(ProbModel):
-    """Probabilistic model that provides a mapping from X to y."""
+class MapModel(Model):
+    "Model that provides a mapping from X to y."
     def __init__(self, X, y):
-        ProbModel.__init__(self)
+        Model.__init__(self)
         self.X = X
         self.y = y
         self.num_data = y.shape[0]
-        
+
+    def update_sum_squares(self):
+        raise NotImplementedError
+    
+    def rmse(self):
+        self.update_sum_squares()
+        return np.sqrt(self.sum_squares()/self.num_data)
+
+    def predict(self, X):
+        raise NotImplementedError
+
+    
+class ProbMapModel(ProbModel, MapModel):
+    """Probabilistic model that provides a mapping from X to y."""
+    def __init__(self, X, y):
+        ProbModel.__init__(self)
+        MapModel.__init__(self, X, y)
+
     
 class LM(ProbMapModel):
     """Linear model
@@ -372,10 +389,20 @@ class BLM(ProbMapModel):
         """Compute the objective function."""
         return - self.log_likelihood()
 
+    def update_nll(self):
+        """Precompute terms needed for the log likelihood."""
+        self.log_det = self.num_data*np.log(self.sigma2*np.pi*2.)-2*np.log(np.abs(np.linalg.det(self.Q[self.y.shape[0]:, :])))
+        self.quadratic = (self.y*self.y).sum()/self.sigma2 - (self.QTy*self.QTy).sum()/self.sigma2
+        
+    def nll_split(self):
+        "Compute the determinant and quadratic term of the negative log likelihood"
+        self.update_nll()
+        return self.log_det, self.quadratic
+    
     def log_likelihood(self):
         """Compute the log likelihood."""
-        #self.update_sum_squares()
-        return -self.num_data*np.log(self.sigma2*np.pi*2.)+2*np.log(np.abs(np.linalg.det(self.Q[self.y.shape[0]:, :])))-(self.y*self.y).sum()/self.sigma2 + (self.QTy*self.QTy).sum()/self.sigma2 
+        self.update_ll()
+        return -self.log_det - self.quadratic
 
 ##########          Week 8            ##########
 
@@ -490,7 +517,7 @@ class GP(ProbMapModel):
         self.objective_name = 'Negative Marginal Likelihood'
 
     def update_inverse(self):
-        # Preompute the inverse covariance and some quantities of interest
+        # Pre-compute the inverse covariance and some quantities of interest
         ## NOTE: This is not the correct *numerical* way to compute this! It is for ease of use.
         self.Kinv = np.linalg.inv(self.K+self.sigma2*np.eye(self.K.shape[0]))
         # the log determinant of the covariance matrix.
@@ -501,17 +528,27 @@ class GP(ProbMapModel):
 
     def fit(self):
         pass
+
+    def update_nll(self):
+        "Precompute the log determinant and quadratic term from the negative log likelihod"
+        self.log_det = 0.5*(self.K.shape[0]*np.log(2*np.pi) + self.logdetK)
+        self.quadratic =  0.5*self.yKinvy
+                            
+    def nll_split(self):
+        "Return the two components of the negative log likelihood"
+        return self.log_det, self.quadratic
     
     def log_likelihood(self):
-        # use the pre-computes to return the likelihood
-        return -0.5*(self.K.shape[0]*np.log(2*np.pi) + self.logdetK + self.yKinvy)
+        "Use the pre-computes to return the likelihood"
+        self.update_nll()
+        return -self.log_det - self.quadratic
     
     def objective(self):
-        # use the pre-computes to return the objective function 
+        "Use the pre-computes to return the objective function"
         return -self.log_likelihood()
 
     def predict(self, X_test, full_cov=False):
-        # Give a mean and a variance of the prediction.
+        "Give a mean and a variance of the prediction."
         K_star = compute_kernel(self.X, X_test, self.kernel, **self.kernel_args)
         A = np.dot(self.Kinv, K_star)
         mu_f = np.dot(A.T, self.y)
