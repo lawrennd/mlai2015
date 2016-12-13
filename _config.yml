@@ -21,6 +21,9 @@ github_username:  lawrennd
 disqus: inverseprobabilitycom
 comments: true
 
+github:
+  edit: true
+
 analytics:
   google:
     tracking_id: UA-62968536-1
