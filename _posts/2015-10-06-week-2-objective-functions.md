@@ -13,8 +13,7 @@ youtube: Gq6bjcm8AqQ
 ---
 
 
-Additional Material
--------------------
+## Additional Material
 
 -   [The \$1 Million Netflix Prize](http://www.netflixprize.com/)
 
