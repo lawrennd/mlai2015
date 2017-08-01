@@ -201,6 +201,21 @@ def fourier(x, num_basis=4, data_limits=[-1., 1.], frequency=None):
             Phi[:, i:i+1] = np.cos(tau*frequency*x)
     return Phi
 
+def relu(x, num_basis=4, data_limits=[-1., 1.], gain=None):
+    "Rectified linear units basis"
+    if num_basis>2:
+        centres=np.linspace(data_limits[0], data_limits[1], num_basis)
+    else:
+        centres = np.asarray([data_limits[0]/2. + data_limits[1]/2.])
+    if gain is None:
+        gain = np.ones(num_basis-1)
+    Phi = np.zeros((x.shape[0], num_basis))
+    # Create the bias
+    Phi[:, 0] = 1.0
+    for i in range(1, num_basis):
+        Phi[:, i:i+1] = (gain[i-1]*x>centres[i-1])*(x-centres[i-1])
+    return Phi
+
 def plot_basis(basis, x_min, x_max, fig, ax, loc, text, directory='./diagrams', fontsize=20):
     """Plot examples of the basis vectors."""
     x = np.linspace(x_min, x_max, 100)[:, None]
