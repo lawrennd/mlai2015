@@ -699,8 +699,14 @@ def mlp_cov(x, x_prime, variance=1., w=1., b=5., alpha=0.):
     return variance*0.5*(1. - theta/np.pi)      
 
 
-def relu_cov(x, x_prime, variance=1., w=1., b=5., alpha=0.):
-    "Covariance function for a ReLU based neural network."
+def relu_cov(x, x_prime, scale=1., w=1., b=5., alpha=0.):
+    """Covariance function for a ReLU based neural network.
+    :param x: first input
+    :param x_prime: second input
+    :param scale: overall scale of the covariance
+    :param w: the overall scale of the weights on the input.
+    :param b: the overall scale of the bias on the input
+    :param alpha: the smoothness of the relu activation"""
     def h(costheta, inner, s, a):
         "Helper function"
         cos2th = costheta*costheta
@@ -715,8 +721,9 @@ def relu_cov(x, x_prime, variance=1., w=1., b=5., alpha=0.):
     s = np.sqrt(inner_1)/norm_1
     s_prime = np.sqrt(inner_2)/norm_2
     arg = np.clip(inner/norm, -1, 1) # clip as numerically can be > 1
+    arg2 = np.clip(inner/np.sqrt(inner_1*inner_2), -1, 1) # clip as numerically can be > 1
     theta = np.arccos(arg)
-    return variance*0.5*((1. - theta/np.pi)*inner + h(arg, inner_2, s, alpha)/np.pi + h(arg, inner_1, s_prime, alpha)/np.pi) 
+    return variance*0.5*((1. - theta/np.pi)*inner + h(arg2, inner_2, s, alpha)/np.pi + h(arg2, inner_1, s_prime, alpha)/np.pi) 
 
 
 def polynomial_cov(x, x_prime, variance=1., degree=2., w=1., b=1.):
