@@ -340,6 +340,80 @@ class Gaussian(Noise):
         dlnZ_dmu = dlnZ_dmu*nu
         dlnZ_dvs = 0.5*(dlnZ_dmu*dlnZ_dmu - nu)
         return dlnZ_dmu, dlnZ_dvs
+
+class SimpleNeuralNetwork(Model):
+    """A simple one layer neural network
+    :param nodes: number of hidden nodes
+    """
+    def __init__(self, nodes):
+        self.nodes = nodes
+        self.w2 = np.random.normal(size=self.nodes)/self.nodes
+        self.b2 = np.random.normal(size=1)
+        self.w1 = np.random.normal(size=self.nodes)
+        self.b1 = np.random.normal(size=self.nodes)
+        
+
+    def predict(self, x):
+        "Compute output given current basis functions."
+        vxmb = self.w1*x + self.b1
+        phi = vxmb*(vxmb>0)
+        return np.sum(self.w2*phi) + self.b2
+
+class SimpleDropoutNeuralNetwork(SimpleNeuralNetwork):
+    """Simple neural network with dropout
+    :param nodes: number of hidden nodes
+    :param drop_p: drop out probability
+    """
+    def __init__(self, nodes, drop_p=0.5):
+        self.drop_p = drop_p
+        nn.__init__(self, nodes=nodes)
+        # renormalize the network weights
+        self.w2 /= self.drop_p 
+        
+    def do_samp(self):
+        "Sample the set of basis functions to use" 
+        gen = np.random.rand(self.nodes)
+        self.use = gen > self.drop_p
+        
+    def predict(self, x):
+        "Compute output given current basis functions used."
+        vxmb = self.w1[self.use]*x + self.b1[self.use]
+        phi = vxmb*(vxmb>0)
+        return np.sum(self.w2[self.use]*phi) + self.b2
+
+class NonparametricDropoutNeuralNetwork(SimpleDropoutNeuralNetwork):
+    """A non parametric dropout neural network
+    :param alpha: alpha parameter of the IBP controlling dropout.
+    :param beta: beta parameter of the two parameter IBP controlling dropout."""
+    def __init__(self, alpha=10, beta=1, n=1000):
+        self.update_num = 0
+        self.alpha = alpha
+        self.beta = beta
+        self.gamma = 0.5772156649
+        tot = np.log(n) + self.gamma + 0.5/n * (1./12.)/(n*n)
+        self.exp_features = alpha*beta*tot
+        self.maxk = np.max((10000,int(self.exp_features + np.ceil(4*np.sqrt(self.exp_features)))))
+        donn.__init__(self, nodes=self.maxk, drop_p=self.alpha/self.maxk)
+        self.maxval = 0
+        self.w2 *= self.maxk/self.alpha
+        self.count = np.zeros(self.maxk)
+    
+    
+        
+    def do_samp(self):
+        "Sample the next set of basis functions to be used"
+        
+        new=np.random.poisson(self.alpha*self.beta/(self.beta + self.update_num))
+        use_prob = self.count[:self.maxval]/(self.update_num+self.beta)
+        gen = np.random.rand(1, self.maxval)
+        self.use = np.zeros(self.maxk, dtype=bool)
+        self.use[:self.maxval] = gen < use_prob
+        self.use[self.maxval:self.maxval+new] = True
+        self.maxval+=new
+        self.update_num+=1
+        self.count[:self.maxval] += self.use[:self.maxval]
+        
+
     
 class BLM(ProbMapModel):
     """Bayesian Linear model
@@ -615,6 +689,35 @@ def exponentiated_quadratic(x, x_prime, variance=1., lengthscale=1.):
     "Exponentiated quadratic covariance function."
     r = np.linalg.norm(x-x_prime, 2)
     return variance*np.exp((-0.5*r*r)/lengthscale**2)        
+
+def mlp_cov(x, x_prime, variance=1., w=1., b=5., alpha=0.):
+    "Covariance function for a MLP based neural network."
+    inner = np.dot(x, x_prime)*w + b
+    norm = np.sqrt(np.dot(x, x)*w + alpha + soft)*np.sqrt(np.dot(x_prime, x_prime)*w + b+alpha)
+    arg = np.clip(inner/norm, -1, 1) # clip as numerically can be > 1
+    theta = np.arccos(arg)
+    return variance*0.5*(1. - theta/np.pi)      
+
+
+def relu_cov(x, x_prime, variance=1., w=1., b=5., alpha=0.):
+    "Covariance function for a ReLU based neural network."
+    def h(costheta, inner, s, a):
+        "Helper function"
+        cos2th = costheta*costheta
+        return (1-(2*s*s-1)*cos2th)/np.sqrt(a/inner + 1 - s*s*cos2th)*s
+
+    inner = np.dot(x, x_prime)*w + b
+    inner_1 = np.dot(x, x)*w + b
+    inner_2 = np.dot(x_prime, x_prime)*w + b
+    norm_1 = np.sqrt(inner_1 + alpha)
+    norm_2 = np.sqrt(inner_2 + alpha)
+    norm = norm_1*norm_2
+    s = np.sqrt(inner_1)/norm_1
+    s_prime = np.sqrt(inner_2)/norm_2
+    arg = np.clip(inner/norm, -1, 1) # clip as numerically can be > 1
+    theta = np.arccos(arg)
+    return variance*0.5*((1. - theta/np.pi)*inner + h(arg, inner_2, s, alpha)/np.pi + h(arg, inner_1, s_prime, alpha)/np.pi) 
+
 
 def polynomial_cov(x, x_prime, variance=1., degree=2., w=1., b=1.):
     "Polynomial covariance function."
