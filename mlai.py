@@ -607,7 +607,7 @@ class GP(ProbMapModel):
 
     def update_inverse(self):
         # Pre-compute the inverse covariance and some quantities of interest
-        ## NOTE: This is not the correct *numerical* way to compute this! It is for ease of use.
+        ## NOTE: This is *not* the correct *numerical* way to compute this! It is for ease of mapping onto the maths.
         self.Kinv = np.linalg.inv(self.K+self.sigma2*np.eye(self.K.shape[0]))
         # the log determinant of the covariance matrix.
         self.logdetK = np.linalg.det(self.K+self.sigma2*np.eye(self.K.shape[0]))
