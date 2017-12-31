@@ -7,7 +7,15 @@ import scipy as sp
 import matplotlib.pyplot as plt
 from IPython.display import display, clear_output, HTML
 
-
+def write_figure(filename, figure=None, **kwargs):
+    """Write figure in correct formating"""
+    if 'transparent' not in kwargs:
+        kwargs['transparent'] = True
+    if figure is None:
+        plt.savefig(filename, **kwargs)
+    else:
+        figure.savefig(filename, **kwargs)
+    
 ##########          Week 2          ##########
 def init_perceptron(x_plus, x_minus, seed=1000001):
     np.random.seed(seed=seed)
@@ -216,7 +224,7 @@ def relu(x, num_basis=4, data_limits=[-1., 1.], gain=None):
         Phi[:, i:i+1] = (gain[i-1]*x>centres[i-1])*(x-centres[i-1])
     return Phi
 
-def plot_basis(basis, x_min, x_max, fig, ax, loc, text, directory='./diagrams', fontsize=20):
+def plot_basis(basis, x_min, x_max, fig, ax, loc, text, directory='../diagrams', fontsize=20):
     """Plot examples of the basis vectors."""
     x = np.linspace(x_min, x_max, 100)[:, None]
 
@@ -232,17 +240,17 @@ def plot_basis(basis, x_min, x_max, fig, ax, loc, text, directory='./diagrams', 
     ax.set_xlabel('$x$', fontsize=fontsize)
     ax.set_ylabel('$\phi(x)$', fontsize=fontsize)
 
-    plt.savefig(directory + '/' + basis.__name__ + '_basis001.svg')
+    write_fig(os.path.join(directory, basis.__name__ + '_basis001.svg'))
 
     ax.plot(x, Phi[:, 1], '-', color=[1, 0, 1], linewidth=3)
     ax.text(loc[1][0], loc[1][1], text[1], horizontalalignment='center', fontsize=fontsize)
 
-    plt.savefig(directory + '/' + basis.__name__ + '_basis002.svg')
+    write_fig(os.path.join(directory, basis.__name__ + '_basis002.svg'))
 
     ax.plot(x, Phi[:, 2], '-', color=[0, 0, 1], linewidth=3)
     ax.text(loc[2][0], loc[2][1], text[2], horizontalalignment='center', fontsize=fontsize)
 
-    plt.savefig(directory + '/' + basis.__name__ + '_basis003.svg')
+    write_fig(os.path.join(directory, basis.__name__ + '_basis003.svg'))
 
     w = np.random.normal(size=(3, 1))
     
@@ -262,14 +270,14 @@ def plot_basis(basis, x_min, x_max, fig, ax, loc, text, directory='./diagrams', 
     for i in range(w.shape[0]):
         t.append(ax.text(loc[i][0], loc[i][1], '$w_' + str(i) + ' = '+ str(w[i]) + '$', horizontalalignment='center', fontsize=fontsize))
 
-    plt.savefig(directory + '/' + basis.__name__ + '_function001.svg')
+    write_fig(os.path.join(directory, basis.__name__ + '_function001.svg'))
 
     w = np.random.normal(size=(3, 1)) 
     f = np.dot(Phi,w) 
     a.set_ydata(f)
     for i in range(3):
         t[i].set_text('$w_' + str(i) + ' = '+ str(w[i]) + '$')
-    plt.savefig(directory + '/' + basis.__name__ + '_function002.svg')
+    write_fig(os.path.join(directory, basis.__name__ + '_function002.svg'))
 
 
     w = np.random.normal(size=(3, 1)) 
@@ -277,7 +285,7 @@ def plot_basis(basis, x_min, x_max, fig, ax, loc, text, directory='./diagrams', 
     a.set_ydata(f)
     for i in range(3):
         t[i].set_text('$w_' + str(i) + ' = '+ str(w[i]) + '$')
-    plt.savefig(directory + '/' + basis.__name__ + '_function003.svg')
+    write_fig(os.path.join(directory, basis.__name__ + '_function003.svg'))
 
 
 #################### Session 5 ####################
