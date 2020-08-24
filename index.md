@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: home
 title: "Overview"
 ---
 
@@ -25,4 +25,4 @@ Past Papers
 
 Information on past papers is [available](./coursePastPapers.html).
 
-<p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+<p class="rss-subscribe">subscribe <a href="{{ "/assets/rss/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
