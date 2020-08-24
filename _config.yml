@@ -1,6 +1,8 @@
 # Site settings
 title: Machine Learning and Adaptive Intelligence 2015
-email: N.Lawrence@sheffield.ac.uk
+author:
+  name: Neil D. Lawrence
+  email: 
 description: > # this means to ignore newlines until "baseurl:"
   Module on machine learning and Adaptive Intelligence as taught in 2015.
 baseurl: "/mlai2015" # the subpath of your site, e.g. /blog/
@@ -23,6 +25,14 @@ comments: true
 
 github:
   edit: true
+  repository: mlai2015
+
+plugins:
+- jekyll-feed
+- jekyll-seo-tag
+- jekyll-remote-theme
+remote_theme: lawrennd/proceedings
+style: ndltalk
 
 analytics:
   google:
