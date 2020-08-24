@@ -1,6 +1,7 @@
 ---
 layout: lecture
 title: Week 1
+week: 1
 date: 2015-09-29 09:00
 venue: SB LT-2
 tagline: Introduction to machine learning and a review of probability theory
